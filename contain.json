@@ -1,0 +1,119 @@
+{
+  "variables": {
+    "node_version": "4.2.3",
+    "npm_version": "3.5.1",
+    "project_name": "styco-site"
+  },
+  "builders": [{
+    "type": "docker",
+    "image": "ubuntu:14.04.3",
+    "commit": true
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "echo 'CREATING APP DIRECTORY...'",
+      "mkdir -p /opt/app"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'ADDING USERS...'",
+      "adduser --disabled-password --gecos '' styco",
+      "adduser styco sudo",
+      "mkdir /home/styco/.cache",
+      "sudo chown styco:styco /home/styco/.cache"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'UPDATING PACKAGE INDEX...'",
+      "apt-get -y update"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'INSTALLING BASE PACKAGES...'",
+      "apt-get -y install \\",
+      "wget=1.15-1ubuntu1.14.04.1 curl=7.35.0-1ubuntu2.5 \\",
+      "unzip=6.0-9ubuntu1.5"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'INSTALLING HEROKU TOOLBELT...'",
+      "wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'INSTALLING MONGO TOOLS AND SHELL...'",
+      "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \\",
+      "--recv 7F0CEB10",
+      "echo \\",
+      "'deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse' | \\",
+      "sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list",
+      "sudo apt-get update",
+      "sudo apt-get install -y --force-yes mongodb-org-tools=3.2.0 \\",
+      "mongodb-org-shell=3.2.0"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'INSTALLING OTHER PACKAGES...'",
+      "apt-get -y install \\",
+      "build-essential=11.6ubuntu6 \\",
+      "redis-tools=2:2.8.4-2 vim=2:7.4.052-1ubuntu3 \\",
+      "git=1:1.9.1-1ubuntu0.2 groff=1.22.2-5 \\",
+      "libkrb5-dev=1.12+dfsg-2ubuntu5.2 \\",
+      "mercurial=2.8.2-1ubuntu1.3 \\",
+      "autojump",
+      "echo '. /usr/share/autojump/autojump.sh' >> ~/.bashrc"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'INSTALLING AWS CLI...'",
+      "curl 'https://s3.amazonaws.com/aws-cli/awscli-bundle.zip' \\",
+      "-o 'awscli-bundle.zip'",
+      "unzip awscli-bundle.zip",
+      "./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'INSTALLING NODE AND NPM...'",
+      "curl -SLO \"https://nodejs.org/dist/v{{user `node_version`}}/\\",
+      "node-v{{user `node_version`}}-linux-x64.tar.gz\" \\",
+      "&& tar -xzf \"node-v{{user `node_version`}}-linux-x64.tar.gz\" \\",
+      "-C /usr/local --strip-components=1 \\",
+      "&& npm install -g npm@\"{{user `npm_version`}}\" \\",
+      "&& npm cache clear"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'INSTALLING NPM GLOBALS...'",
+      "npm install -g bower@1.7.0 yo@1.6.0 grunt-cli@0.1.13 \\",
+      "gulp@3.9.0 node-gyp@3.2.1 unicode@0.6.1"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'INSTALLING MEMCACHED...'",
+      "apt-get -y install libmemcached-dev=1.0.8-1ubuntu2 \\",
+      "memcached=1.4.14-0ubuntu9"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo 'CLEANING UP...'",
+      "rm -rf /tmp/*"
+    ]
+  }],
+  "post-processors": [{
+    "type": "docker-tag",
+    "force": true,
+    "repository": "styers/styco-site"
+  }]
+}
