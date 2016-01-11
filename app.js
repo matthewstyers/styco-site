@@ -7,15 +7,15 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'site',
-	'brand': 'site',
-	
-	'less': 'public',
+	'name': 'Styers.co',
+	'brand': 'Styers.co',
+
+	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'jade',
-	
+
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -26,7 +26,7 @@ keystone.init({
 keystone.import('models');
 
 keystone.set('locals', {
-	_: require('underscore'),
+	_: require('lodash'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable

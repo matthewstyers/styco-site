@@ -1,0 +1,19 @@
+//- nav.navbar.navbar-full.navbar-light.bg-faded
+//- a.navbar-brand(href='/') Styers.co
+//- button.navbar-toggler.hidden-sm-up(type='button', data-toggle='collapse', data-target='#navbar-collapse').pull-xs-right
+//-   i.fa.fa-bars
+//-   span.sr-only Toggle navigation
+//- #navbar-collapse.collapse.navbar-toggleable-xs
+//-   ul.nav.navbar-nav
+center
+  #nav
+    h1.display-4 styers.co
+    hr
+    nav.navbar.navbar-success
+      button.navbar-toggler.hidden-sm-up(type='button', data-toggle='collapse', data-target='#navPills')
+        i.fa.fa-bars
+        span.sr-only Toggle navigation
+      #navPills.collapse.navbar-toggleable-xs  
+        ul.nav.navbar-nav.nav-pills.muted
+          each link in navLinks
+            a.nav-item.nav-link(href=link.href class!='btn btn-lg ' + (section == link.key ? 'btn-success-outline active' : null))= link.label

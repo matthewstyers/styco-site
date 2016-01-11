@@ -1,5 +1,8 @@
-#environment variables
+# environment variables
 .env
+
+# ignore bower_components for now
+bower_components
 
 # Logs
 logs

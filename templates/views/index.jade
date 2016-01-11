@@ -1,23 +1,58 @@
-extends ../layouts/default
+extends ../layouts/base
+
+block intro
+  if data.category
+    .container
+      h1.display-4= data.category ? data.category.name : null
 
 block content
-	.container: .jumbotron
-		img(src='/images/logo.svg', width='160')
-		h1 Welcome
-		p This is your new <a href='http://keystonejs.com' target='_blank'>KeystoneJS</a> website.
-		p It includes the latest versions of
-			| <a href='http://getbootstrap.com/' target='_blank'>Bootstrap</a>
-			| and <a href='http://www.jquery.com/' target='_blank'>jQuery</a>.
-		p Visit the <a href='http://keystonejs.com/guide' target='_blank'>Getting Started</a> guide to learn how to customise it.
-		hr
-		if user && user.canAccessKeystone
-			p
-				a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
-		else
-			p We have created a default Admin user for you with the email <strong>mattysty@gmail.com</strong> and the password <strong>matthew</strong>.
-			p
-				a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
-				|  to use the Admin UI.
-		hr
-		p Remember to <a href='https://github.com/keystonejs/keystone' target='_blank'>Star KeystoneJS on GitHub</a> and
-			| <a href='https://twitter.com/keystonejs' target='_blank'>follow @keystonejs</a> on twitter for updates.
+  .container: .row
+    .col-lg-12
+      if filters.category && !data.category
+        h3.text-muted Invalid Category.
+      else
+        if data.posts.results.length
+          if data.posts.totalPages > 1
+            h4.text-weight-normal Showing 
+              strong #{data.posts.first}
+              |  to 
+              strong #{data.posts.last}
+              |  of 
+              strong #{data.posts.total}
+              |  posts.
+          else
+            h4.text-weight-normal Showing #{utils.plural(data.posts.results.length, '* post')}.
+          .blog
+            each post in data.posts.results
+              +post(post)
+
+          if data.posts.totalPages > 1
+            ul.pagination
+              if data.posts.previous
+                li: a(href='?page=' + data.posts.previous): span.glyphicon.glyphicon-chevron-left
+              else
+                li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+              each p, i in data.posts.pages
+                li(class=data.posts.currentPage == p ? 'active' : null)
+                  a(href='?page=' + (p == '...' ? (i ? data.posts.totalPages : 1) : p ))= p
+              if data.posts.next
+                li: a(href='?page=' + data.posts.next): span.glyphicon.glyphicon-chevron-right
+              else
+                li.disabled: a(href='?page=' + data.posts.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+        else
+          if data.category
+            h3.text-muted There are no posts in the category #{data.category.name}.
+          else
+            .jumbotron
+              h1 Whoops!
+              h4 Looks like something went wrong loading up Styers.co
+              p if you're seeing this and feeling generous, 
+                +abtn({title:'let us know', href: '/contact', type:'warning-outline btn-sm'})
+
+    if data.categories.length
+      .col-sm-4.col-md-3
+        h2 Categories
+        .list-group(style='margin-top: 70px;')
+          a(href='/', class=!data.category ? 'active' : false).list-group-item All Categories
+          each cat in data.categories
+            a(href='/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
