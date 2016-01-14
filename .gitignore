@@ -1,6 +1,9 @@
 # environment variables
 .env
 
+# drafts folder
+.drafts
+
 # ignore bower_components for now
 bower_components
 
