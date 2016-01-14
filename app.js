@@ -20,7 +20,6 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User'
-
 });
 
 keystone.import('models');
@@ -35,10 +34,18 @@ keystone.set('locals', {
 keystone.set('routes', require('./routes'));
 
 keystone.set('nav', {
-	'posts': ['posts', 'post-categories'],
-	'galleries': 'galleries',
+	'posts': ['posts', 'topics'],
+	'media': 'media',
 	'enquiries': 'enquiries',
-	'users': 'users'
+	'users': ['users'/*, 'profiles'*/]
 });
+
+//cloudinary config
+keystone.set('cloudinary config', {
+	'cloudinary folders': true,
+	'cloudinary prefix': 'styco-site',
+	'dev': false
+});
+
 
 keystone.start();

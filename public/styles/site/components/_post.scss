@@ -1,0 +1,19 @@
+article {
+ .lead {
+  padding: 10px 0;
+  font-style: italic;
+  font-weight: 400;
+ }
+ .main {
+  font-family: $font-family-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.65;
+ }
+}
+
+.post {
+ h1, h2 {
+  font-weight: 300;
+ }
+}

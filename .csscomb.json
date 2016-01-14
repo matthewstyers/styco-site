@@ -1,6 +1,6 @@
 {
   "always-semicolon": true,
-  "block-indent": 1,
+  "block-indent": 2,
   "color-case": "lower",
   "color-shorthand": true,
   "element-case": "lower",
@@ -11,7 +11,7 @@
   "space-after-combinator": 1,
   "space-before-selector-delimiter": 0,
   "space-between-declarations": "\n",
-  "space-after-opening-brace": " ",
+  "space-after-opening-brace": "\n",
   "space-before-closing-brace": "\n",
   "space-before-colon": 0,
   "space-before-combinator": 1,

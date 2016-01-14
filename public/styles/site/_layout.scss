@@ -1,19 +1,17 @@
-body
-{
-    color: $gray-dark;
+body {
+ color: $gray-dark;
 }
-#footer
-{
-    margin-top: 30px;
-    padding-top: 30px;
-
-    color: #777;
-    border-top: 1px solid #eee;
+#footer {
+ padding-top: 30px;
+ margin-top: 30px;
+ color: #777;
+ border-top: 1px solid #eee;
 }
-.gallery-image img
-{
-    display: block;
-
-    max-width: 100%;
-    height: auto;
+.gallery-image img {
+ display: block;
+ max-width: 100%;
+ height: auto;
+}
+.section {
+ padding: 20px 0;
 }

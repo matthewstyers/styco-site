@@ -1,5 +1,53 @@
 extends ../layouts/base
-
+block css
+  style.
+    .label { font-weight: 300; white-space: normal; text-align: left; border-radius: 0.5rem; margin: 7px 0; margin-right: 23%; margin-left: 0; }
+    h3.text-xs-right .label { margin-left: 23%; margin-right: 0; }
 block content
-  .jumbotron.jumbotron-fluid
-    .container
+  .container
+    .row: .col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-12(style="border: 1px solid #000; border-radius: 0.25rem;")
+
+      h3 
+        +label({text: "Stuff's on the way.", type: 'default'})
+      h3.text-xs-right 
+        +label({text: 'What stuff?', type: 'info'})
+      h3 
+        +label({text: 'You know, stuff.', type: 'default'}) 
+      h3.text-xs-right 
+        +label({text: 'Like...', type: 'info'}) 
+      h3 
+        +label({text: 'IDK, anything.', type: 'default'})
+      h3.text-xs-right 
+        +label({text: 'At least tell me what kind of stuff.', type: 'info'})
+      h3.muted
+        span.label.label-default
+          | You know, 
+          | #[a(href='https://www.youtube.com/watch?v=OyGG0VMldg0&feature=youtu.be&t=28s' target='_blank' style='color:white;text-decoration:underline')  cool stuff, slick stuff, neat stuff... raw stuff]
+          | .
+      h3.text-xs-right 
+        +label({text: "You're the worst.", type: 'info'}) 
+      h3 
+        +label({text: 'I know.', type: 'default'}) 
+      h3.text-xs-right 
+        +label({text: 'OK, but really', type: 'info'})  
+      h3 
+        +label({text: "Ugh, fine. 'Stuff' is like a gallery, but for projects or lists or anything I'm working on. It could be anything.", type: 'default'})
+      h3.text-xs-right 
+        +label({text: 'Sounds dumb. When will their be actual stuff here?', type: 'info'})  
+      h3 
+        +label({text: "I think you meant 'there'. 'their' is possessive", type: 'default'})
+      h3.text-xs-right 
+        +label({text: "I'm blocking your number. I hope you die alone.", type: 'info'})  
+      h3 
+        +label({text: "Aw, come on. I was just trying to help!", type: 'default'})
+      h3 
+        +label({text: "Seriously? Did you really block my number.", type: 'default'})
+      h3 
+        +label({text: ":(", type: 'default'})
+      h3.text-uppercase
+        +label({text: "This isn't funny anymore, mom.", type: 'default'})
+  .container
+    .row: .col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-12
+      center
+        h1.display-1 STUFF
+        h2 is coming soon.

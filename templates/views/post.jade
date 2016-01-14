@@ -2,28 +2,22 @@ extends ../layouts/base
 
 block content
   .container: .row: .col-lg-12
-    article
-      p: a(href='/') &larr; back
-      hr
-      if !data.post
-        h2 Invalid Post.
-      else
-        header
-          h1= data.post.title
-          h5 Posted 
-            if data.post.publishedDate
-              | on #{data.post._.publishedDate.format('MMMM Do, YYYY')} 
-            if data.post.categories && data.post.categories.length
-              | in 
-              each cat, cat_i in data.post.categories
-                a(href='/posts/category/' + cat.key)= cat.name
-                if cat_i < data.post.categories.length - 1
-                  | , 
-                else
-                  |  
-            if data.post.author
-              | by #{data.post.author.name.first}
-        .post
+    p: +abtn({href: '/', title: 'BACK', icon: 'chevron-left', type: 'secondary'})
+    if !data.post 
+      +no-content()
+    else
+      .post
+        article
+          header
+            h1.display-4= data.post.title
+            h5.text-muted
+              if data.post.publishedDate
+                != data.post._.publishedDate.moment().from()
+              if data.post.author 
+                |  | #{data.post.author.name.first}
           if data.post.image.exists
             .image-wrap: img(src=data.post._.image.fit(750,450)).img-responsive
-          != data.post.content.full
+          .lead.muted
+            != data.post.content.brief.html
+          .main
+            != data.post.content.full.html

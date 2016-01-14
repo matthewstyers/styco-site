@@ -1,52 +1,44 @@
-#nav
-{
-    display: inline-block;
-    float: none !important;
-
-    padding: 50px 0;
+#nav {
+ display: inline-block;
+ float: none !important;
+ padding: 50px 0;
 }
-.nav-link
-{
-    color: $brand-success;
+.nav-link {
+ color: $brand-success;
 }
 .nav-link:hover,
-.nav-link:active
-{
-    color: darken($brand-success, 25%);
+.nav-link:active {
+ color: darken($brand-success, 25%);
 }
 .nav-pills .nav-item.open .nav-link,
 .nav-pills .nav-item.open .nav-link:focus,
 .nav-pills .nav-item.open .nav-link:hover,
 .nav-pills .nav-link.active,
 .nav-pills .nav-link.active:focus,
-.nav-pills .nav-link.active:hover
-{
-    @include button-outline-variant($btn-success-bg);
+.nav-pills .nav-link.active:hover {
+ @include button-outline-variant($btn-success-bg);
 }
 
-.nav-toggleable
-{
-    &-xs
-    {
-        @include media-breakpoint-up(sm)
-        {
-            display: inline-block !important;
-        }
-    }
+.nav-toggleable {
+ &-xs {
+  @include media-breakpoint-up(sm) {
+   display: inline-block !important;
+  }
+ }
 }
-.nav-toggler
-{
-    font-size: $font-size-lg;
-    line-height: 1;
+.nav-toggler {
+ padding: .5rem .75rem;
+ font-size: $font-size-lg;
+ line-height: 1;
+ background: none;
+ border: $border-width solid transparent;
 
-    padding: .5rem .75rem;
-
-    border: $border-width solid transparent;
-    background: none;
-
-    @include border-radius($btn-border-radius);
-    @include hover-focus
-    {
-        text-decoration: none;
-    }
+ @include border-radius($btn-border-radius);
+ @include hover-focus {
+  text-decoration: none;
+ }
+}
+#secondary-nav {
+ margin: 25px 0;
+ font-size: 1.1rem;
 }

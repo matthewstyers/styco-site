@@ -1,0 +1,51 @@
+extends ../layouts/base
+
+block content
+  .container
+    if images.hero
+      .row: .col-lg-12
+        .hero-image
+          img.img-fluid(src=images.hero._.image.crop(1200, 500, {'gravity': 'north'})).center-block
+          p.pull-xs-right.small.muted us, right after the photographer said, "Now show me your #[em Writing an About Page] smile". 
+    .row: .col-lg-8.col-md-10.col-sm-12.col-lg-offset-2.col-md-offset-1
+      ul.nav.nav-tabs#secondary-nav
+        li.nav-item
+          a.nav-link(href='#intro' data-toggle='tab' role='tab') An Intro
+        li.nav-item
+          a.nav-link.active(href='#matthew' data-toggle='tab' role='tab') About Matthew
+        li.nav-item
+          a.nav-link(href='#taylor' data-toggle='tab' role='tab') About Taylor
+      .tab-content
+        #intro(role="tabpanel").tab-pane.fade
+          h1.display-4 Hey,
+          br
+          p Glad you could make it. We're Matthew #[em (left, mustache)] and Taylor #[em (right, lipstick)] Styers. We currently reside in Houston, TX, by way of Oklahoma City and #[s Dallas] Ft. Worth, respectively, and we're as uninterested in biographical tidbits as you are, so we'll stop there.
+          p If you've observed the above photo at any length, you're almost certainly aware that we are, in fact, married to each other. And while you likely, even somewhat justifiably, find yourself stricken with a desire to roll your eyes so as to indicate contempt or disgust at the very notion of married millennials with a website, we would encourage you to first consider the following:
+          ol
+            li We cannot see you, and thus, have no way to observe your non-verbal gestures.
+            li We already know.
+          p And while the apparent plot herein – #[em couple makes website] – may initially seem like the outgrowth of some deeply embedded, participation-trophy-generation narcissism, we hope that even moderate consideration of the site's contents instead points toward the premise around which we built this site:
+          p.lead.text-xs-center Let's make some stuff together.
+          p We like making stuff, and this is the place where we put the stuff once we've made it, or, on occasion, while it's in the process of being made. We hope you enjoy it, slash, don't take it too seriously. 
+        #matthew(role="tabpanel").tab-pane.fade.in.active
+          .row: .col-lg-12
+            h1.display-4 Matthew #[span.muted Styers]
+            p I was once asked to write a personal summary for a 'Team' page of an employer's website, and my submission, which was accepted for some reason, remains my most apt self-description to-date:
+            blockquote.blockquote
+              p.m-b-4 You know how every family has that weird aunt who periodically mass-texts the entire extended family a link to an Onion article believing it to be real? Matthew is that weird aunt.
+            p I can't imagine any additional information become more illuminating than that statement, but for posterity's sake, here's a (nearly exhaustive) list of things I enjoy:
+            | Building stuff, self-educating, projects, The New York Yankees, Taylor's enchiladas, podcasts, cold weather, well-made television shows, running.
+          .row: .col-lg-12
+            .section
+              .section-header
+                h2 Links
+              .btn-toolbar
+                +abtn({text: 'Resumé', icon: 'file-text-o', type: 'primary-outline'})
+                +abtn({text: 'Posts', icon: 'align-left', type: 'warning-outline'})
+                +abtn({text: 'Twitter', icon: 'twitter', type: 'info-outline'})
+            .section
+              .section-header
+                h2 Matthew's Recent Posts
+                +post-deck({posts: posts.matthew, columns: '2', limit: '6'})
+        #taylor.tab-pane.fade(role="tabpanel")
+          h1.display-4 Taylor

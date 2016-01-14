@@ -1,33 +1,51 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
-/**
- * Gallery Model
- * =============
- */
-
 var Gallery = new keystone.List('Gallery', {
 	autokey: {
 		from: 'name',
 		path: 'key',
 		unique: true
-	}
-});
+	},
+	map: {
+		publicId: 'key',
 
+	},
+	path: 'media',
+	singular: 'media item',
+	plural: 'media items',
+	label: 'Media Items'
+});
 Gallery.add({
 	name: {
-		type: String,
+		type: Types.Text,
 		required: true
+	},
+	mediaType: {
+		type: Types.Select,
+		options: ['single image', 'image collection']
 	},
 	publishedDate: {
 		type: Date,
-		default: Date.now
+		default: Date.now,
+		noedit: true
 	},
-	heroImage: {
-		type: Types.CloudinaryImage
+	image: {
+		type: Types.CloudinaryImage,
+		dependsOn: {
+			mediaType: 'single image'
+		},
+		folder: 'styco-site'
 	},
 	images: {
-		type: Types.CloudinaryImages
+		type: Types.CloudinaryImages,
+		dependsOn: {
+			mediaType: 'image collection'
+		}
+	},
+	altText: {
+		type: Types.Text,
+		note: 'Text that displays on hover. Mostly for SEO.'
 	}
 });
 

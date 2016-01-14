@@ -2,11 +2,11 @@ mixin abtn(options)
   a.btn(href=options.href, class!= 'btn-' + options.type) 
     if options.icon
       span.i(class!= 'fa fa-' + options.icon, style='margin-right: 8px') 
-    != options.title
+    != options.text
 
 mixin submit(options)
   .form-actions
     button(type='submit', class!='btn-' + options.type).btn
       if options.icon
         span.i(class!= 'fa fa-' + options.icon, style='margin-right: 6px')
-      != text
+      != options.text

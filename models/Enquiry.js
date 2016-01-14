@@ -26,14 +26,14 @@ Enquiry.add({
 	enquiryType: {
 		type: Types.Select,
 		options: [{
-			value: 'message',
-			label: 'Just leaving a message'
+			value: 'taylor',
+			label: 'Taylor'
 		}, {
-			value: 'question',
-			label: 'I\'ve got a question'
+			value: 'matthew',
+			label: 'Matthew'
 		}, {
-			value: 'other',
-			label: 'Something else...'
+			value: 'both',
+			label: 'Couldn\'t care less'
 		}]
 	},
 	message: {

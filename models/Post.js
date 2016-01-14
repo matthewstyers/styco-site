@@ -34,8 +34,11 @@ Post.add({
 		index: true
 	},
 	publishedDate: {
-		type: Types.Date,
+		type: Types.Datetime,
 		index: true,
+		default: Date.now,
+		format: 'MM-DD-YYYY h:m a',
+		utc: true,
 		dependsOn: {
 			state: 'published'
 		}
@@ -47,12 +50,12 @@ Post.add({
 		brief: {
 			type: Types.Markdown,
 			wysiwyg: true,
-			height: 150
+			height: 200
 		},
 		extended: {
 			type: Types.Markdown,
 			wysiwyg: true,
-			height: 400
+			height: 450
 		}
 	},
 	categories: {

@@ -8,16 +8,15 @@ exports = module.exports = function(req, res) {
 	// Set locals
 	locals.section = 'home';
 	locals.filters = {
-		post: req.params.post
+		post: req.params.slug
 	};
 	locals.data = {
 		posts: [],
-		post: null
+		post: {}
 	};
 
 	// Load the current post
 	view.on('init', function(next) {
-
 		var q = keystone.list('Post').model.findOne({
 			state: 'published',
 			slug: locals.filters.post
@@ -31,16 +30,16 @@ exports = module.exports = function(req, res) {
 	});
 
 	// Load other posts
-	view.on('init', function(next) {
-
-		var q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
-
-		q.exec(function(err, results) {
-			locals.data.posts = results;
-			next(err);
-		});
-
-	});
+	// view.on('init', function(next) {
+	//
+	// 	var q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
+	//
+	// 	q.exec(function(err, results) {
+	// 		locals.data.posts = results;
+	// 		next(err);
+	// 	});
+	//
+	// });
 
 	// Render the view
 	view.render('post');
