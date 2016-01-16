@@ -47,6 +47,19 @@ Post.add({
 		type: Types.CloudinaryImage
 	},
 	content: {
+		customPreview: {
+			type: Types.Boolean,
+			label: 'Customize Preview',
+		},
+		preview: {
+			type: Types.Markdown,
+			wysiwyg: true,
+			height: 200,
+			dependsOn: {
+				'content.customPreview': true
+			},
+			note: 'Custom preview is not displayed in full post, but overrides Content Brief in preview'
+		},
 		brief: {
 			type: Types.Markdown,
 			wysiwyg: true,

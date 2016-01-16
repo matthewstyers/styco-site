@@ -11,7 +11,7 @@
   "space-after-combinator": 1,
   "space-before-selector-delimiter": 0,
   "space-between-declarations": "\n",
-  "space-after-opening-brace": "\n",
+  "space-after-opening-brace": " ",
   "space-before-closing-brace": "\n",
   "space-before-colon": 0,
   "space-before-combinator": 1,

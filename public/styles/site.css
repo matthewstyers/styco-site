@@ -4765,155 +4765,50 @@ body {
 .section-header {
   margin-bottom: 15px; }
 
-#nav {
-  display: inline-block;
-  float: none !important;
-  padding: 50px 0; }
-
-.nav-link {
-  color: #5cb85c; }
-
-.nav-link:hover,
-.nav-link:active {
-  color: #2d672d; }
-
-.nav-pills .nav-item.open .nav-link,
-.nav-pills .nav-item.open .nav-link:focus,
-.nav-pills .nav-item.open .nav-link:hover,
-.nav-pills .nav-link.active,
-.nav-pills .nav-link.active:focus,
-.nav-pills .nav-link.active:hover {
-  color: #5cb85c;
-  background-image: none;
-  background-color: transparent;
-  border-color: #5cb85c; }
-  .nav-pills .nav-item.open .nav-link:focus, .nav-pills .nav-item.open .nav-link.focus, .nav-pills .nav-item.open .nav-link:active, .nav-pills .nav-item.open .nav-link.active,
-  .open > .nav-pills .nav-item.open .nav-link.dropdown-toggle,
-  .nav-pills .nav-item.open .nav-link:focus:focus,
-  .nav-pills .nav-item.open .nav-link:focus.focus,
-  .nav-pills .nav-item.open .nav-link:focus:active,
-  .nav-pills .nav-item.open .nav-link:focus.active,
-  .open >
-  .nav-pills .nav-item.open .nav-link:focus.dropdown-toggle,
-  .nav-pills .nav-item.open .nav-link:hover:focus,
-  .nav-pills .nav-item.open .nav-link:hover.focus,
-  .nav-pills .nav-item.open .nav-link:hover:active,
-  .nav-pills .nav-item.open .nav-link:hover.active,
-  .open >
-  .nav-pills .nav-item.open .nav-link:hover.dropdown-toggle,
-  .nav-pills .nav-link.active:focus,
-  .nav-pills .nav-link.active.focus,
-  .nav-pills .nav-link.active:active,
-  .nav-pills .nav-link.active.active,
-  .open >
-  .nav-pills .nav-link.active.dropdown-toggle,
-  .nav-pills .nav-link.active:focus:focus,
-  .nav-pills .nav-link.active:focus.focus,
-  .nav-pills .nav-link.active:focus:active,
-  .nav-pills .nav-link.active:focus.active,
-  .open >
-  .nav-pills .nav-link.active:focus.dropdown-toggle,
-  .nav-pills .nav-link.active:hover:focus,
-  .nav-pills .nav-link.active:hover.focus,
-  .nav-pills .nav-link.active:hover:active,
-  .nav-pills .nav-link.active:hover.active,
-  .open >
-  .nav-pills .nav-link.active:hover.dropdown-toggle {
-    color: #fff;
-    background-color: #5cb85c;
-    border-color: #5cb85c; }
-  .nav-pills .nav-item.open .nav-link:hover,
-  .nav-pills .nav-item.open .nav-link:focus:hover,
-  .nav-pills .nav-item.open .nav-link:hover:hover,
-  .nav-pills .nav-link.active:hover,
-  .nav-pills .nav-link.active:focus:hover,
-  .nav-pills .nav-link.active:hover:hover {
-    color: #fff;
-    background-color: #5cb85c;
-    border-color: #5cb85c; }
-  .nav-pills .nav-item.open .nav-link.disabled:focus, .nav-pills .nav-item.open .nav-link.disabled.focus, .nav-pills .nav-item.open .nav-link:disabled:focus, .nav-pills .nav-item.open .nav-link:disabled.focus,
-  .nav-pills .nav-item.open .nav-link:focus.disabled:focus,
-  .nav-pills .nav-item.open .nav-link:focus.disabled.focus,
-  .nav-pills .nav-item.open .nav-link:focus:disabled:focus,
-  .nav-pills .nav-item.open .nav-link:focus:disabled.focus,
-  .nav-pills .nav-item.open .nav-link:hover.disabled:focus,
-  .nav-pills .nav-item.open .nav-link:hover.disabled.focus,
-  .nav-pills .nav-item.open .nav-link:hover:disabled:focus,
-  .nav-pills .nav-item.open .nav-link:hover:disabled.focus,
-  .nav-pills .nav-link.active.disabled:focus,
-  .nav-pills .nav-link.active.disabled.focus,
-  .nav-pills .nav-link.active:disabled:focus,
-  .nav-pills .nav-link.active:disabled.focus,
-  .nav-pills .nav-link.active:focus.disabled:focus,
-  .nav-pills .nav-link.active:focus.disabled.focus,
-  .nav-pills .nav-link.active:focus:disabled:focus,
-  .nav-pills .nav-link.active:focus:disabled.focus,
-  .nav-pills .nav-link.active:hover.disabled:focus,
-  .nav-pills .nav-link.active:hover.disabled.focus,
-  .nav-pills .nav-link.active:hover:disabled:focus,
-  .nav-pills .nav-link.active:hover:disabled.focus {
-    border-color: #a3d7a3; }
-  .nav-pills .nav-item.open .nav-link.disabled:hover, .nav-pills .nav-item.open .nav-link:disabled:hover,
-  .nav-pills .nav-item.open .nav-link:focus.disabled:hover,
-  .nav-pills .nav-item.open .nav-link:focus:disabled:hover,
-  .nav-pills .nav-item.open .nav-link:hover.disabled:hover,
-  .nav-pills .nav-item.open .nav-link:hover:disabled:hover,
-  .nav-pills .nav-link.active.disabled:hover,
-  .nav-pills .nav-link.active:disabled:hover,
-  .nav-pills .nav-link.active:focus.disabled:hover,
-  .nav-pills .nav-link.active:focus:disabled:hover,
-  .nav-pills .nav-link.active:hover.disabled:hover,
-  .nav-pills .nav-link.active:hover:disabled:hover {
-    border-color: #a3d7a3; }
-
-@media (min-width: 544px) {
-  .nav-toggleable-xs {
-    display: inline-block !important; } }
-
-.nav-toggler {
-  padding: .5rem .75rem;
-  font-size: 1.25rem;
-  line-height: 1;
-  background: none;
-  border: 1px solid transparent;
-  border-radius: 0.25rem; }
-  .nav-toggler:focus, .nav-toggler:hover {
-    text-decoration: none; }
-
-#secondary-nav {
-  margin: 25px 0;
-  font-size: 1.1rem; }
-
 article .lead {
-  padding: 10px 0;
+  font-weight: 400;
   font-style: italic;
-  font-weight: 400; }
+  padding: 10px 0; }
 
 article .main {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.65; }
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: #222238; }
+  article .main h1 {
+    margin-bottom: 1.2rem; }
+  article .main h2 {
+    margin: 2rem 0 1.2rem 0;
+    color: #55595c; }
+  article .main h3 {
+    color: #818a91; }
 
-.post h1, .post h2 {
+.post h1,
+.post h2,
+.post h3 {
   font-weight: 300; }
 
-.post-list #post-category-label {
+.post-preview #post-category-label {
   display: none; }
 
-.post-list:hover #post-category-label {
+.post-preview:hover #post-category-label {
+  font-size: 1.05rem;
   display: inline;
   margin-left: 12px;
-  font-size: 1.05rem;
   vertical-align: middle;
   opacity: .25; }
 
 .card-deck #post-category-label {
+  font-size: 1.05rem;
   display: inline;
   margin-left: 12px;
-  font-size: 1.05rem;
   vertical-align: middle;
   opacity: .75; }
+
+.post-preview {
+  margin-top: 40px; }
+
+#card-post-button {
+  position: relative; }
 
 .muted {
   opacity: .75; }

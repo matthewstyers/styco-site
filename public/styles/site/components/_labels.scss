@@ -1,24 +1,38 @@
-.post-list {
- #post-category-label {
-  display: none;
- }
+.post-preview
+{
+    #post-category-label
+    {
+        display: none;
+    }
 }
-.post-list:hover {
- #post-category-label {
-  display: inline;
-  margin-left: 12px;
-  font-size: 1.05rem;
-  vertical-align: middle;
-  opacity: .25;
- }
+.post-preview:hover
+{
+    #post-category-label
+    {
+        font-size: 1.05rem;
+
+        display: inline;
+
+        margin-left: 12px;
+
+        vertical-align: middle;
+
+        opacity: .25;
+    }
 }
 
-.card-deck {
- #post-category-label {
-  display: inline;
-  margin-left: 12px;
-  font-size: 1.05rem;
-  vertical-align: middle;
-  opacity: .75;
- }
+.card-deck
+{
+    #post-category-label
+    {
+        font-size: 1.05rem;
+
+        display: inline;
+
+        margin-left: 12px;
+
+        vertical-align: middle;
+
+        opacity: .75;
+    }
 }

@@ -1,5 +1,5 @@
-mixin post(post)
-  .post-list.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+mixin post-preview(post)
+  .post-preview.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
     h1: a(href='/post/' + post.slug)= post.title
     h5.text-muted
       if post.publishedDate
@@ -8,11 +8,15 @@ mixin post(post)
         |  | #{post.author.name.first}
     if post.image.exists
       img(src=post._.image.fit(160,160)).img.pull-right
-    if post.content.brief
+    if (post.content.customPreview === true)
       .lead
-        p!= post.content.brief.html
+        p!=post.content.preview.html
     else 
-      p!= post.content.extended.html
+      if post.content.brief
+        .lead
+          p!= post.content.brief.html
+      else 
+        p!= post.content.extended.html
     if post.content.extended
       .read-more
         +abtn({href: '/post/' + post.slug, text:'Full Post', icon: 'plus', type: 'primary-outline btn-xs'})

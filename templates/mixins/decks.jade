@@ -1,7 +1,5 @@
 mixin post-deck(options)
   - var limit = options.limit || 12
   .card-deck
-    .row
-      each post in options.posts
-        .col-lg-6.col-sm-12
-          +card-post(post)
+    each post in options.posts
+      +card-post(post)

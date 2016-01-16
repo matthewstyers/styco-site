@@ -1,12 +1,10 @@
 mixin card-post (post)
   .card
+    h5.card-header
+      a(href!= '/post/' + post.slug)= post.title
     .card-block
-      h4.card-title= post.title
-      h6.card-subtitle.muted!= post._.publishedDate.moment().from()
-      if post.content.brief
-        p.card-text!= post.content.brief.html
-      +abtn({href: '/post/' + post.slug, text:'Full Post', icon: 'plus', type: 'primary-outline btn-xs'})
-    .card-footer
-      if post.categories && post.categories.length
-        each cat in post.categories
-          +label({text: cat.name, id: 'post-category-label'})
+      p.card-subtitle.small.text-muted!= post._.publishedDate.moment().from()
+      if (post.content.customPreview === true)
+        p.card-blockquote!= post.content.preview.html
+      else
+        p.card-blockquote!= post.content.brief.html
