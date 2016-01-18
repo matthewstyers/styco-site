@@ -9,6 +9,8 @@ exports = module.exports = function(req, res) {
   locals.section = 'about';
   locals.images = {};
   locals.posts = {};
+  locals.matthew = {};
+  locals.taylor = {};
   view.on('get', function(next) {
     async.parallel(
       [
@@ -32,6 +34,23 @@ exports = module.exports = function(req, res) {
             .exec(function(err, results) {
               locals.posts.matthew = results;
               cb(err, results);
+            });
+        },
+        function(cb) {
+          keystone.list('User')
+            .model.find()
+            .exec(function(err, results) {
+              async.each(results, function(result, callback) {
+                if (result.name.full === 'Matthew Styers') {
+                  locals.matthew = result;
+                }
+                if (result.name.full === 'Taylor Styers') {
+                  locals.taylor = result;
+                }
+                callback();
+              }, function(error) {
+                cb(error, results);
+              });
             });
         }
       ],
