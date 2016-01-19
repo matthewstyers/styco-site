@@ -1,45 +1,74 @@
 var gulp = require('gulp');
+var install = require('gulp-install');
 var jshint = require('gulp-jshint');
 var jshintReporter = require('jshint-stylish');
-var watch = require('gulp-watch');
-var shell = require('gulp-shell');
+var minifyCss = require('gulp-cssnano');
+var nodemon = require('gulp-nodemon');
+var path = require('path');
+var rename = require('gulp-rename');
 var sass = require('gulp-sass');
+// var watch = require('gulp-watch');
+// var shell = require('gulp-shell');
 
 var paths = {
-	'src': ['./models/**/*.js', './routes/**/*.js', 'app.js', 'package.json'],
-	'style': {
-		all: './public/styles/**/*.scss',
-		output: './public/styles/'
-	}
-
+  'src': ['./models/**/*', './routes/**/*.js', 'app.js', 'package.json'],
+  'style': {
+    all: './public/styles/**/*.scss',
+    compiled: './public/dist/site.css',
+		dist: './public/dist/'
+  }
 };
+
+// install
+gulp.task('install', function() {
+	gulp.src('./package.json')
+   .pipe(gulp.dest('../'))
+   .pipe(install({ignoreScripts: true}));
+});
 
 // gulp lint
 gulp.task('lint', function() {
-	gulp.src(paths.src)
-		.pipe(jshint())
-		.pipe(jshint.reporter(jshintReporter));
+  gulp.src(paths.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter(jshintReporter));
 });
 
-// gulp watcher for lint
-gulp.task('watch:lint', function() {
-	gulp.watch(paths.src, ['lint']);
+gulp.task('sass', function() {
+  gulp.src(paths.style.all)
+    .pipe(sass()
+      .on('error', sass.logError))
+    .pipe(gulp.dest(paths.style.dist))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(minifyCss({
+      compatibility: 'ie9'
+    }))
+    .pipe(gulp.dest(paths.style.dist));
 });
 
-gulp.task('watch:sass', function () {
-	gulp.watch(paths.style.all, ['sass']);
+gulp.task('app:start', function() {
+	nodemon({
+    script: 'app.js',
+		watch: ['../src/'],
+    ext: 'js scss json',
+    tasks: function(changedFiles) {
+      var tasks = [];
+			console.log('file changed');
+      changedFiles.forEach(function(file) {
+        if (path.extname(file) === '.js') {
+					tasks.push('lint');
+				}
+        if (path.extname(file) === '.scss') {
+					tasks.push('sass');
+				}
+        if (path.extname(file) === '.json') {
+					tasks.push('install');
+				}
+      });
+      return tasks;
+    }
+  })
+  .on('restart', function() {
+    console.log('app restarted');
+  });
 });
-
-gulp.task('sass', function(){
-	gulp.src(paths.style.all)
-		.pipe(sass().on('error', sass.logError))
-		.pipe(gulp.dest(paths.style.output));
-});
-
-gulp.task('app:start', shell.task('node app.js'));
-gulp.task('watch', [
-	'watch:sass',
-	'watch:lint'
-]);
-
-gulp.task('default', ['watch', 'app:start']);
+gulp.task('default', ['install', 'lint', 'sass', 'app:start']);

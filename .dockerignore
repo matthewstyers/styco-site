@@ -1,12 +1,3 @@
-# environment variables
-.env
-
-# drafts folder
-.drafts
-
-# ignore bower_components for now
-bower_components
-
 # Logs
 logs
 *.log
@@ -25,11 +16,28 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
-# node-waf configuration
-.lock-wscript
-
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directory
 node_modules
+
+# .env configuration files
+.env
+*.env
+
+# .DS_Store files on OS X
+.DS_Store
+
+# git files
+.git
+.gitignore
+
+# temp directores
+./tmp
+
+# node modules folder
+node_modules
+
+# README
+README.md

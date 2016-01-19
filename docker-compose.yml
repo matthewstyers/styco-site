@@ -1,0 +1,24 @@
+web:
+
+  build: .
+  ports:
+   - "80:5000"
+  volumes:
+   - .:/opt/app/src
+  links:
+   - mongo
+   - redis
+  env_file:
+    - ./.env
+  container_name: styco
+
+mongo:
+  image: mongo:3.2.1
+  ports:
+    - "27017:27017"
+  container_name: mongo
+redis:
+  image: redis:3.0.6-alpine
+  ports:
+    - "6379:6379"
+  container_name: redis
