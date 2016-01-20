@@ -2,9 +2,9 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 /**
- * User Model
- * ==========
- */
+* User Model
+* ==========
+*/
 
 var User = new keystone.List('User', {
   defaultColumns: 'name, email, isAdmin'
@@ -27,17 +27,6 @@ User.add({
     initial: true,
     required: true
   }
-}, 'Handles', {
-  twitter: {
-    type: Types.Text
-  },
-  github: {
-    type: Types.Text
-  }
-}, 'Resources', {
-  cv: {
-    type: Types.Url
-  }
 }, 'Permissions', {
   isAdmin: {
     type: Boolean,
@@ -48,19 +37,26 @@ User.add({
 
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone')
-  .get(function() {
-    return this.isAdmin;
-  });
+.get(function() {
+  return this.isAdmin;
+});
+
+User.schema.virtual('githubUrl')
+.get(function() {
+  var baseUrl = 'https://github.com/';
+  var url = baseUrl.concat(this.github);
+  return url;
+});
 
 User.relationship({
   ref: 'Post',
   path: 'posts',
   refPath: 'author'
 });
-// User.relationship({
-//   ref: 'UserProfile',
-//   path: 'profile',
-//   refPath: 'user'
-// });
+User.relationship({
+  ref: 'UserProfile',
+  path: 'profile',
+  refPath: 'user'
+});
 
 User.register();

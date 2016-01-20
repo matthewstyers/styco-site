@@ -1,5 +1,5 @@
 var async = require('async'),
-  keystone = require('keystone');
+keystone = require('keystone');
 
 exports = module.exports = function(req, res) {
 
@@ -8,50 +8,54 @@ exports = module.exports = function(req, res) {
   // Set locals
   locals.section = 'about';
   locals.images = {};
-  locals.posts = {};
-  locals.matthew = {};
-  locals.taylor = {};
+  locals.Matthew = {
+    profile: {},
+    posts: []
+  };
+  locals.Taylor = {
+    profile: {},
+    posts: []
+  };
   view.on('get', function(next) {
     async.parallel(
       [
         // get the hero image.
         function(cb) {
           keystone.list('Gallery')
-            .model.findOne({
-              name: 'about-header'
-            })
+          .model.findOne({
+            name: 'about-header'
+          })
+          .exec(function(err, result) {
+            locals.images.hero = result;
+            cb(err, result);
+          });
+        },
+        function(cb) {
+          var authors = keystone.get('site authors');
+          async.each(authors, function(author, callback) {
+            keystone.list('UserProfile')
+            .model.findOne()
+            .where('belongsTo', author)
+            .populate('user')
             .exec(function(err, result) {
-              locals.images.hero = result;
-              cb(err, result);
-            });
-        },
-        function(cb) {
-          keystone.list('Post')
-            .model.find()
-            .where('state', 'published')
-            .sort('-publishedDate')
-            .populate('author categories')
-            .exec(function(err, results) {
-              locals.posts.matthew = results;
-              cb(err, results);
-            });
-        },
-        function(cb) {
-          keystone.list('User')
-            .model.find()
-            .exec(function(err, results) {
-              async.each(results, function(result, callback) {
-                if (result.name.full === 'Matthew Styers') {
-                  locals.matthew = result;
-                }
-                if (result.name.full === 'Taylor Styers') {
-                  locals.taylor = result;
-                }
+              if (result) {
+                locals[result.user.name.first].profile = result;
+                console.log(locals[result.user.name.first].profile);
+                keystone.list('Post')
+                .model.find()
+                .where('author', result.user)
+                .sort('-publishedDate')
+                .exec(function(err, posts) {
+                  locals[result.user.name.first].posts = posts;
+                  callback();
+                });
+              } else {
                 callback();
-              }, function(error) {
-                cb(error, results);
-              });
+              }
             });
+          }, function(err) {
+            cb(err, null);
+          });
         }
       ],
       function(err) {

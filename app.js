@@ -47,5 +47,7 @@ keystone.set('cloudinary config', {
 	'dev': false
 });
 
+keystone.set('site authors', ['Matthew Styers', 'Taylor Styers']);
+
 
 keystone.start();

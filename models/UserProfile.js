@@ -4,11 +4,11 @@ var Types = keystone.Field.Types;
 
 var UserProfile = new keystone.List('UserProfile', {
   autokey: {
-    from: 'user.name.full',
+    from: 'user',
     path: 'key',
     unique: true
   },
-  defaultColumns: 'name, user',
+  defaultColumns: 'belongsTo, twitter, github',
   hidden: false,
   label: 'User Profiles',
   nocreate: false,
@@ -18,11 +18,11 @@ var UserProfile = new keystone.List('UserProfile', {
   plural: 'user profiles',
   singular: 'user profile',
 });
+
 UserProfile.add({
-  name: {
+  belongsTo: {
     type: Types.Text,
-    required: true,
-    initial: true
+    hidden: true
   },
   user: {
     type: Types.Relationship,
@@ -35,8 +35,40 @@ UserProfile.add({
   },
   toolbelt: {
     type: Types.TextArray
+  }
+}, 'Handles', {
+  twitter: {
+    type: Types.Text
   },
-
+  github: {
+    type: Types.Text
+  }
+},
+'Resources', {
+  cv: {
+    type: Types.Url
+  }
 });
 
-// UserProfile.register();
+UserProfile.schema.pre('save', function (next) {
+  var self = this;
+  keystone.list('User').model
+  .findById(this.user)
+  .exec(function (err, user) {
+    if (err) throw new Error(err);
+    self.belongsTo = user.name.first.concat(' ', user.name.last);
+    next();
+  });
+});
+
+// UserProfile.schema.virtual('posts')
+// .get(function() {
+//   keystone.list('Post').model.find()
+//   .where('author', this.user)
+//   .exec(function(err, posts) {
+//     if (err) throw new Error(err);
+//     return posts;
+//   });
+// });
+
+UserProfile.register();
