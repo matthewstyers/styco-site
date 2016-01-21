@@ -4629,6 +4629,19 @@ a.bg-danger:focus, a.bg-danger:hover {
 body {
   color: #222238; }
 
+#wrap {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 10px;
+  margin-bottom: -50px; }
+
+#push {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  min-height: 50px; }
+
 #footer {
   padding-top: 30px;
   margin-top: 30px;
@@ -4810,9 +4823,17 @@ article .main {
 #card-post-button {
   position: relative; }
 
-footer {
-  position: absolute;
-  bottom: 20px; }
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  min-height: 50px;
+  background-color: white; }
+
+footer .container-fluid {
+  padding: 15px 10px;
+  vertical-align: middle; }
 
 .muted {
   opacity: .75; }

@@ -30,6 +30,16 @@ UserProfile.add({
     required: true,
     initial: true
   },
+  username: {
+    type:Types.Text,
+    unique: true
+  }
+}, 'Contact', {
+  phone: {
+    type: Types.Text,
+    unique: true
+  }
+}, 'Skills', {
   experience: {
     type: Types.TextArray
   },
@@ -46,7 +56,7 @@ UserProfile.add({
 },
 'Resources', {
   cv: {
-    type: Types.Url
+    type: Types.Boolean,
   }
 });
 
@@ -60,6 +70,11 @@ UserProfile.schema.pre('save', function (next) {
     next();
   });
 });
+UserProfile.schema.virtual('cvUri')
+  .get(function() {
+    var resources = 'resources';
+    return resources.concat('/', this.username, '/cv');
+  });
 
 // UserProfile.schema.virtual('posts')
 // .get(function() {

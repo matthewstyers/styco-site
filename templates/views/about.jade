@@ -40,15 +40,15 @@ block content
               .section-header
                 h2 Links
               .btn-toolbar
-                if Matthew.profile.cv
-                  +abtn({text: 'Resumé', icon: 'file-text-o', type: 'primary-outline', href: Matthew.profile.cv})
-                if Matthew.profile.github
-                  +abtn({text: 'Github', icon: 'github', type: 'warning-outline', href: ('https://github.com/' + Matthew.profile.github)})
-                if Matthew.profile.twitter
-                  +abtn({text: 'Twitter', icon: 'twitter', type: 'info-outline', href: ('https://twitter.com/' + Matthew.profile.twitter)})
+                if matthew.profile.cv
+                  +abtn({text: 'Resumé', icon: 'file-text-o', type: 'primary-outline', href: matthew.profile.cvUri})
+                if matthew.profile.github
+                  +abtn({text: 'Github', icon: 'github', type: 'warning-outline', href: ('https://github.com/' + matthew.profile.github)})
+                if matthew.profile.twitter
+                  +abtn({text: 'Twitter', icon: 'twitter', type: 'info-outline', href: ('https://twitter.com/' + matthew.profile.twitter)})
             .section
               .section-header
                 h2 Matthew's Recent Posts
-                +post-deck({posts: Matthew.posts, columns: '2', limit: '6'})
+                +post-deck({posts: matthew.posts, columns: '2', limit: '6'})
         #taylor.tab-pane.fade(role="tabpanel")
           h1.display-4 Taylor

@@ -1,17 +1,30 @@
 body {
- color: $gray-dark;
+  color: $gray-dark;
+}
+#wrap {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 10px;
+  margin-bottom: -$footer-height;
+}
+#push {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  min-height: $footer-height;
 }
 #footer {
- padding-top: 30px;
- margin-top: 30px;
- color: #777;
- border-top: 1px solid #eee;
+  padding-top: 30px;
+  margin-top: 30px;
+  color: #777;
+  border-top: 1px solid #eee;
 }
 .gallery-image img {
- display: block;
- max-width: 100%;
- height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 .section {
- padding: 20px 0;
+  padding: 20px 0;
 }

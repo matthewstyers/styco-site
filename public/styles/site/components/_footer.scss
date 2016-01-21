@@ -1,4 +1,14 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  min-height: $footer-height;
+  background-color: white;
+}
 footer {
-  position: absolute;
-  bottom: 20px;
+  .container-fluid {
+    padding: 15px 10px;
+    vertical-align: middle;
+  }
 }

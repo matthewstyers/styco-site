@@ -16,10 +16,11 @@ exports = module.exports = function(app) {
 
 	// Views
 	app.get('/', routes.views.index);
-	app.get('/post/:slug', routes.views.post);
-	app.get('/topic/:category', routes.views.topic);
 	app.get('/about', routes.views.about);
 	app.all('/contact', routes.views.contact);
+	app.get('/post/:slug', routes.views.post);
+	app.get('/resources/:user/:id', routes.views.resources);
 	app.all('/stuff', routes.views.stuff);
+	app.get('/topic/:category', routes.views.topic);
 
 };

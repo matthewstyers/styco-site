@@ -8,11 +8,11 @@ exports = module.exports = function(req, res) {
   // Set locals
   locals.section = 'about';
   locals.images = {};
-  locals.Matthew = {
+  locals.matthew = {
     profile: {},
     posts: []
   };
-  locals.Taylor = {
+  locals.taylor = {
     profile: {},
     posts: []
   };
@@ -35,18 +35,18 @@ exports = module.exports = function(req, res) {
           async.each(authors, function(author, callback) {
             keystone.list('UserProfile')
             .model.findOne()
-            .where('belongsTo', author)
+            .where('username', author)
             .populate('user')
             .exec(function(err, result) {
               if (result) {
-                locals[result.user.name.first].profile = result;
-                console.log(locals[result.user.name.first].profile);
+                locals[result.username].profile = result;
+                // console.log(locals[result.username].profile);
                 keystone.list('Post')
                 .model.find()
                 .where('author', result.user)
                 .sort('-publishedDate')
                 .exec(function(err, posts) {
-                  locals[result.user.name.first].posts = posts;
+                  locals[result.username].posts = posts;
                   callback();
                 });
               } else {
