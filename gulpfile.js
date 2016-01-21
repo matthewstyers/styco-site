@@ -23,7 +23,8 @@ var paths = {
 gulp.task('install', function() {
 	gulp.src('./package.json')
    .pipe(gulp.dest('../'))
-   .pipe(install({ignoreScripts: true}));
+  //  .pipe(install({ignoreScripts: true}));
+   .pipe(install());
 });
 
 // gulp lint
@@ -45,11 +46,12 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(paths.style.dist));
 });
 
-gulp.task('app:start', function() {
+gulp.task('app:start', ['install', 'lint', 'sass'], function() {
 	nodemon({
-    script: 'app.js',
-		watch: ['../src/'],
-    ext: 'js scss json',
+    script: './app.js',
+    watch: '*',
+    legacyWatch: true,
+    ext: 'js scss json sass',
     tasks: function(changedFiles) {
       var tasks = [];
 			console.log('file changed');
@@ -67,8 +69,13 @@ gulp.task('app:start', function() {
       return tasks;
     }
   })
+  .on('start', function() {
+  })
   .on('restart', function() {
     console.log('app restarted');
+  })
+  .on('exit', function() {
   });
 });
-gulp.task('default', ['install', 'lint', 'sass', 'app:start']);
+
+gulp.task('default', ['app:start']);

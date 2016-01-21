@@ -23,8 +23,8 @@ build/Release
 node_modules
 
 # .env configuration files
-.env
-*.env
+# .env
+# *.env
 
 # .DS_Store files on OS X
 .DS_Store
@@ -35,9 +35,6 @@ node_modules
 
 # temp directores
 ./tmp
-
-# node modules folder
-node_modules
 
 # README
 README.md

@@ -77,5 +77,5 @@ at the end of your output. Point your browser to the IP you received in step 4, 
 - [ ] move remaining static content to db
 - [ ] prep for public hosting on docker hub
 - [ ] complete redis config
-- [ ] work out lingering nodemon issues
+- [x] work out lingering nodemon issues
 - [ ] config + docs for CircleCI

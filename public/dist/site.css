@@ -4810,5 +4810,9 @@ article .main {
 #card-post-button {
   position: relative; }
 
+footer {
+  position: absolute;
+  bottom: 20px; }
+
 .muted {
   opacity: .75; }
