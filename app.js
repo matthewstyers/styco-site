@@ -4,6 +4,7 @@ require('dotenv').load();
 
 // Require keystone
 var keystone = require('keystone');
+// var browserSync = require('browser-sync');
 
 keystone.init({
 
@@ -19,7 +20,8 @@ keystone.init({
 	'auto update': true,
 	'session': true,
 	'auth': true,
-	'user model': 'User'
+	'user model': 'User',
+	'port': process.env.PORT || 3000
 });
 
 keystone.import('models');
@@ -50,4 +52,23 @@ keystone.set('cloudinary config', {
 keystone.set('site authors', ['matthew', 'taylor']);
 
 
-keystone.start();
+keystone.start({
+	onMount: function() {
+		keystone.app.use(require('connect-livereload')());
+  	}
+	// socket.io config - for later
+	// 	// var io = keystone.get('io');
+	// 	// var session = keystone.get('express session');
+	// 	// // Share session between express and socketio
+	// 	// io.use(function(socket, next) {
+	// 	// 	session(socket.handshake, {}, next);
+	// 	// });
+	// 	// io.on('connection', function(socket) {
+	// 	// 	console.log('user connected');
+	// 	// 	socket.on('chat message', function(msg) {
+	// 	// 		console.log('message: ' + msg);
+	// 	// 		io.emit('chat message', msg);
+	// 	// 	});
+	// 	// });
+	// }
+});
