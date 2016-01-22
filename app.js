@@ -54,7 +54,10 @@ keystone.set('site authors', ['matthew', 'taylor']);
 
 keystone.start({
 	onMount: function() {
-		keystone.app.use(require('connect-livereload')());
+		if (process.env.NODE_ENV === 'development') {
+			keystone.app.use(require('connect-livereload')());
+		}
+
   	}
 	// socket.io config - for later
 	// 	// var io = keystone.get('io');
