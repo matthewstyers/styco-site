@@ -1,0 +1,9 @@
+extends ../../layouts/base
+
+block content
+  .container
+    h1.display-1.text-xs-center
+      = data.profile.user.name.first
+      | 
+      = data.profile.user.name.last
+    p= data.profile

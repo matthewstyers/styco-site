@@ -6,7 +6,7 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 
 	// Set locals
-	locals.noNav = 'home';
+	locals.noNav = true;
 	locals.filters = {
     user: req.params.user,
 		resource: req.params.id
@@ -16,6 +16,9 @@ exports = module.exports = function(req, res) {
 		profile: {}
 	};
 
+	// set the view to be rendered
+	var viewDir = 'resources';
+	var viewUri = viewDir.concat('/', locals.filters.resource);
 	// Load the current post
 	view.on('init', function(next) {
 		var q = keystone.list('UserProfile').model.findOne({
@@ -29,6 +32,6 @@ exports = module.exports = function(req, res) {
 	});
 
 	// Render the view
-	view.render('resource');
+	view.render(viewUri);
 
 };

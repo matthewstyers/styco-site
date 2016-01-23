@@ -1,6 +1,5 @@
-web:
-
-  build: .
+styco:
+  image: styers/styco-site:latest
   # net: "host"
   ports:
   - "80:5000"
@@ -9,13 +8,14 @@ web:
   - "35729:35729"
   volumes:
    - .:/opt/app/src
-  # links:
-  # - mongo
-  # - redis
   env_file:
     - ./.env
+  extra_hosts:
+    - "otherhost:192.168.50.2"
   container_name: styco
-
+# links:
+# - mongo
+# - redis
 # mongo:
 #  image: mongo:3.2.1
 #   ports:
