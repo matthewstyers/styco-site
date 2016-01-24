@@ -43,7 +43,7 @@ gulp.task('lint', function() {
   .pipe(jshint.reporter(jshintReporter));
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', function(cb) {
   gulp.src(paths.style.sass)
   .pipe(sass()
   .on('error', sass.logError))
@@ -53,11 +53,16 @@ gulp.task('sass', function() {
     compatibility: 'ie9'
   }))
   .pipe(gulp.dest(paths.style.dist))
-  .pipe(livereload());
+  .on('end', function(err) {
+    livereload.reload();
+    if (err) cb(err);
+    cb();
+  });
 });
 
-gulp.task('reload', function() {
+gulp.task('reload', function(cb) {
   livereload.reload();
+  cb();
 });
 
 gulp.task('nodemon', ['install', 'lint'], function() {

@@ -6,6 +6,7 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 
 	// Set locals
+	locals.sidebar = true;
 	locals.noNav = true;
 	locals.filters = {
     user: req.params.user,

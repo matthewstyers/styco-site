@@ -1,9 +1,21 @@
 extends ../../layouts/base
 
 block content
-  .container
-    h1.display-1.text-xs-center
-      = data.profile.user.name.first
-      | 
-      = data.profile.user.name.last
-    p= data.profile
+  #resource-wrapper(data-spy="scroll" data-target="#sidebar" data-offset='50')
+    #overview(style='height:2000px')
+      h1.display-1.text-xs-center
+        = data.profile.user.name.first
+        | 
+        = data.profile.user.name.last
+    #experience(style='height:2000px')
+      h1.display-1.text-xs-center experience
+    #toolbelt(style='height:2000px')
+      h1.display-1.text-xs-center toolbelt
+    #frontend(style='height:2000px')
+      h1.display-1.text-xs-center Frontend
+    #backend(style='height:2000px')
+      h1.display-1.text-xs-center backend
+    #devops(style='height:2000px')
+      h1.display-1.text-xs-center DevOps
+block js
+  script(src="/js/components/sidebar.js")

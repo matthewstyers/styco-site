@@ -1,0 +1,26 @@
+#sidebar-wrapper.navbar-fixed-top
+  .ul.nav.sidebar-nav#sidebar(role='navigation')
+    //- li.sidebar-brand 
+    //-   a(href='#')
+    //-     img(src='/images/calldrive-logo-1-white.svg', alt='calldrive call-only ad management software logo', style='width: 80%')
+    li.nav-item: a(href='#overview').nav-link.active #[span.sidebar-icon.i.fa.fa-user] Overview
+    li.nav-item: a(href='#experience').nav-link #[span.sidebar-icon.i.fa.fa-suitcase] Experience
+    li.nav-item.dropdown: a.dropdown-toggle(href='#', data-toggle='dropdown').nav-link.disabled
+      | #[strong #[span.sidebar-icon.i.fa.fa-cogs] Toolbelt]
+      span(style='margin-left:8px').caret
+    li.nav-item: a(href='#frontend').nav-link #[span.sidebar-icon.i.fa.fa-desktop] Frontend
+    li.nav-item: a(href='#backend').nav-link #[span.sidebar-icon.i.fa.fa-database] Backend
+    li.nav-item: a(href='#devops').nav-link #[span.sidebar-icon.i.fa.fa-cubes] DevOps
+    //- li.dropdown.open: a.dropdown-toggle(href='#', data-toggle='dropdown')
+    //-     | #[span.sidebar-icon.i.fa.fa-none] #[strong Toolbelt]
+    //-     span(style='margin-left:8px').caret
+    //-   ul.dropdown-menu(role='menu')
+    //-     li
+    //-       a(href='/campaigns') #[span.sidebar-icon.i.fa.fa-desktop] Frontend
+    //-     li
+    //-       a(href='/campaigns/new') #[span.sidebar-icon.i.fa.fa-database] Backend
+    //-     li
+    //-       a(href='/campaigns/new')  #[span.sidebar-icon.i.fa.fa-cubes] Infrastructure
+
+  .hamburger.is-open
+    h3: button(type='button', data-toggle='offcanvas') MENU #[i.sidebar-icon.fa.fa-bars]

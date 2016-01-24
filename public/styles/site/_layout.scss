@@ -1,19 +1,42 @@
 body {
+  position: relative;
   color: $gray-dark;
 }
 #wrap {
-  position: relative;
+  z-index: 1;
+  height: auto !important;
   min-height: 100vh;
-  padding-bottom: 10px;
+  padding-top: $header-height;
+  padding-bottom: $footer-height;
   margin-bottom: -$footer-height;
 }
 #push {
-  position: absolute;
+  position: static;
   bottom: 0;
+  z-index: 2;
   width: 100%;
-  height: auto;
-  min-height: $footer-height;
+  height: 50px;
 }
+#resource-wrapper {
+  position: relative;
+  height: 100vh;
+  padding: 20px;
+  margin-top: -$header-height;
+  overflow-y: scroll;
+}
+// #wrap {
+//   position: relative;
+//   min-height: 100vh;
+//   padding-bottom: 10px;
+//   margin-bottom: -$footer-height;
+// }
+// #push {
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   height: auto;
+//   min-height: $footer-height;
+// }
 #footer {
   padding-top: 30px;
   margin-top: 30px;

@@ -27,13 +27,18 @@ html(lang="en")
 
     block head
   body
-    #wrap
-      unless noNav
-        include ../components/nav
-      block intro
-        +flash-messages(messages)
-      block content
-    //- #push
+    block intro
+      +flash-messages(messages)
+    unless sidebar
+      #wrap
+        unless noNav
+          include ../components/nav
+        block content
+    else
+      #wrap.toggled
+        include ../components/sidebar
+        block content
+      //- #push
     unless noNav
       include ../components/footer
 
