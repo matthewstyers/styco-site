@@ -4956,8 +4956,7 @@ footer .container-fluid {
 .sidebar-nav li.open a:active,
 .sidebar-nav li.open a:focus {
   color: #fff;
-  text-decoration: none;
-  background-color: transparent; }
+  text-decoration: none; }
 
 .sidebar-nav > .sidebar-brand {
   height: 65px;
@@ -5007,9 +5006,9 @@ footer .container-fluid {
 .hamburger.is-open i {
   -webkit-transform: rotate(90deg); }
 
-.hamburger:hover,
-.hamburger:focus,
-.hamburger:active {
+.hamburger button:hover,
+.hamburger button:focus,
+.hamburger button:active {
   outline: none; }
 
 .navbar {

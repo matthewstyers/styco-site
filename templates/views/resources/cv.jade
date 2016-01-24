@@ -3,10 +3,14 @@ extends ../../layouts/base
 block content
   #resource-wrapper(data-spy="scroll" data-target="#sidebar" data-offset='50')
     #overview(style='height:2000px')
-      h1.display-1.text-xs-center
-        = data.profile.user.name.first
-        | 
-        = data.profile.user.name.last
+      .row
+        .col-lg-3
+        .col-lg-9
+          h1.display-2
+            = data.profile.user.name.first
+            | 
+            = data.profile.user.name.last
+
     #experience(style='height:2000px')
       h1.display-1.text-xs-center experience
     #toolbelt(style='height:2000px')
