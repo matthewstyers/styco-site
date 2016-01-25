@@ -1,25 +1,175 @@
 extends ../../layouts/base
 
 block content
-  #resource-wrapper(data-spy="scroll" data-target="#sidebar" data-offset='50')
-    #overview(style='height:2000px')
-      .row
-        .col-lg-3
-        .col-lg-9
-          h1.display-2
-            = data.profile.user.name.first
-            | 
-            = data.profile.user.name.last
+  .conatiner-fluid
+    #resource-wrapper(data-spy="scroll" data-target="#sidebar" data-offset='50')
+      //- HEADING
+      #overview
+        .row#heading
+          .col-lg-3
+            img.img-fluid(src='/images/matthew-styers.jpg')
+          .col-lg-9
+            h1.display-2
+              = data.profile.user.name.first
+              | 
+              = data.profile.user.name.last
+            h2 Node.JS + Javascript Developer | #[span.h4.text-muted Houston, TX]
+        #summary.row: .col-lg-12
+          .row: .col-lg-12
+            h1.display-4 Summary
+          .row
+            .col-lg-6.col-sm-12
+              ul
+                li 3+ years software development experience
+                li A/B and Multivariate testing experience
+                li Well-versed in front-end, back-end, and infrastructure engineering
+            .col-lg-6.col-sm-12
+              ul
+                li Capable full-stack engineer with an eye for UI design
+                li Prior experience in sales, marketing, and team management
+                li Implementation experience in a variety of languages and environments
+        //- EXPERIENCE
+      #experience
+        //- .row: .col-lg-12
+        //-   h1.display-4 Experience
+        //- .row: .col-lg-12
+        //-   .conatiner-fluid
+        //-     ul.timeline
+        //-       li.timeline-inverted#CALLDRIVE
+        //-         .row
+        //-           .col-lg-2.col-sm-4
+        //-             .timeline-badge.start.warning
+        //-               p July
+        //-                 | 2015
+        //-             .timeline-badge.success
+        //-               p Jan
+        //-                 | 2016
+        //-           .col-lg-10.col-sm-8
+        //-             .timeline-panel
+        //-               .timeline-heading
+        //-                 h4.timeline-title
+        //-                   | CallDrive | #[span.h5 Houston, TX]
+        //-                 p: small.text-muted
+        //-                   |  Co-founder, Product Engineer
+        //-               .timeline-body
+        //-                 p
+        //-                   .lead Co-founded and led product development for an enterprise
+        //-                     | software startup designed to connect online consumers with 
+        //-                     | with businesses that primarily conduct transactions offline.
+        //-                 ul
+        //-                   li Worked as a primary member of a small engineering team to build an enterprise software prodcut designed to automate online advertising, in addition to leading product and marketing strategy.
+        //-                   li Developed multiple iterations of the platform on Python-Django-Postgres-Backbone and NodeJS-Keystone-React-MongoDB stacks.
+        //-                   li Integrated and constructed UIs around a variety of third-party services, including Twilio (telephony) and Google Adwords (Advertising), amongst many others.
+        //-                   li Designed front-end webapps using Jade, ReactJS, and Backbone-Marionette.
+        //-                   li Assisted with construction and deployment of microservice architectures using Docker, Amazon Web Services and Heroku.
+        //-       li.timeline-inverted#FIRSTFUNNEL
+        //-         .row
+        //-           .col-lg-2.col-sm-4
+        //-             .timeline-badge.start.warning
+        //-               p Jan
+        //-                 | 2015
+        //-             .timeline-badge.success
+        //-               p July
+        //-                 | 2015
+        //-           .col-lg-10.col-sm-8
+        //-             .timeline-panel
+        //-               .timeline-heading
+        //-                 h4.timeline-title
+        //-                   | FirstFunnel | #[span.h5 Houston, TX]
+        //-                 p: small.text-muted
+        //-                   |  Co-Founder, Product Manager
+        //-               .timeline-body
+        //-                 p
+        //-                   .lead Partnered with the ownership group at M&N Holdings to create a software
+        //-                     | product from the platform created there before eventually branching off to
+        //-                     | to create a more broadly appealing product, which would ultimately become CallDrive.
+        //-                 ul
+        //-                   li Served as Product Manager for First Funnel, a marketing automation platform for automotive dealerships
+        //-                   li Successfully led a team of designers and engineers through planning, design, and and initial development phases of product creation
+        //-                   li Managed remote team of international developers during prototype creation sprint.
+        //-                   li Developed business and financial models used to secure seed funding.
+        //-       li.timeline-inverted#MN-HOLDINGS
+        //-         .row
+        //-           .col-lg-2.col-sm-4
+        //-             .timeline-badge.start.warning
+        //-               p June
+        //-                 | 2012
+        //-             .timeline-badge.success
+        //-               p Jan
+        //-                 | 2015
+        //-           .col-lg-10.col-sm-8
+        //-             .timeline-panel
+        //-               .timeline-heading
+        //-                 h4.timeline-title
+        //-                   | M&N Holding Co. (Automotive Group) | #[span.h5 Oklahoma City, OK]
+        //-                 p: small.text-muted
+        //-                   |  Project Manager
+        //-               .timeline-body
+        //-                 p
+        //-                   .lead Though initially hired to manage dealership social media accounts and SEO,
+        //-                     | I quickly became an essential piece of the larger digital team by 
+        //-                     | generating positive outcomes on a variety of corporate interests, including
+        //-                     | the development of an in-house website and marketing platform
+        //-                 ul
+        //-                   li Managed digital marketing operations for a multipoint automotive group
+        //-                   li Served as primary marketing analyst, advancing corporate practices on sales attribution, ROI measurement, and risk analysis.
+        //-                   li Led several projects across 15+ dealerships, including development of an in-house website platform
+        //-                   li Played a central role in the diversification of digital marketing efforts
+        //-       li.timeline-inverted#TATE
+        //-         .row
+        //-           .col-lg-2.col-sm-4
+        //-             .timeline-badge.start.warning
+        //-               p Nov
+        //-                 | 2011
+        //-             .timeline-badge.success
+        //-               p June
+        //-                 | 2012
+        //-           .col-lg-10.col-sm-8
+        //-             .timeline-panel
+        //-               .timeline-heading
+        //-                 h4.timeline-title
+        //-                   | Tate Music Group | #[span.h5 Oklahoma City, OK]
+        //-                 p: small.text-muted
+        //-                   |  A&R/Sales Representative
+        //-               .timeline-body
+        //-                 p
+        //-                   .lead A life-long interest in music industry eventually led to 
+        //-                     | led to a position in Worked in Artists & Repertoire division of 
+        //-                     | Tate Music Group, an Oklahoma City-based record label.
+        //-                 ul
+        //-                   li Signed a variety of new talet from around the US to the label roster
+        //-                   li Developed and maintained relationships with artists and management
+        //-                   li Provided guidance to incoming artists about operating effectively within the music industry.
+        //-                   li Earned top sales honors multiple times, including first month, and was consistently a top performer at the label
+      #education
+        .row: .col-lg-12
+          h1.display-3 Education
+        .row
+          .col-lg-12
+            h3 Southern Nazarene University
+            h4 BS, Sociology | #[span.text-muted May, 2011]
+            ul
+              li Graduated with 3.5 GPA
+              li Conducted research on nonviolent social movements 
+              li Completed semesters of remote study in Crested Butte, CO San Diego, CA 
+              li Served on the Student Government Association Executive Council as VP of Campus Communications 
+              li Wrote 2 columns (Culture, political opinion) for the campus newspaper
+        .row
+          .col-lg-12
+            h3 Personal Achievements
+            ul
+              li Served as adjust professor of Sociology at SNU semester following graduation.
+              li Conducted outcomes measurement study for a local non-profit.
+              li Completed 3 marathons and 4 half-marathons
 
-    #experience(style='height:2000px')
-      h1.display-1.text-xs-center experience
-    #toolbelt(style='height:2000px')
-      h1.display-1.text-xs-center toolbelt
-    #frontend(style='height:2000px')
-      h1.display-1.text-xs-center Frontend
-    #backend(style='height:2000px')
-      h1.display-1.text-xs-center backend
-    #devops(style='height:2000px')
-      h1.display-1.text-xs-center DevOps
+      #toolbelt
+        .row: .col-lg-12
+          h1.display-2 Toolbelt
+      #frontend(style='height:2000px')
+        h1.display-1.text-xs-center Frontend
+      #backend(style='height:2000px')
+        h1.display-1.text-xs-center backend
+      #devops(style='height:2000px')
+        h1.display-1.text-xs-center DevOps
 block js
-  script(src="/js/components/sidebar.js")
+  

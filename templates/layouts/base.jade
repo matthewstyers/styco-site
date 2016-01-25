@@ -28,7 +28,7 @@ html(lang="en")
     block head
   body
     block intro
-      +flash-messages(messages)
+    +flash-messages(messages)
     unless sidebar
       #wrap
         unless noNav
@@ -38,6 +38,8 @@ html(lang="en")
       #wrap.toggled
         include ../components/sidebar
         block content
+
+
       //- #push
     unless noNav
       include ../components/footer
@@ -49,5 +51,8 @@ html(lang="en")
       script.
         document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
         ':35729/livereload.js?snipver=1"></' + 'script>')
+
+    if sidebar
+      script(src="/js/components/sidebar.js")
 
     block js
