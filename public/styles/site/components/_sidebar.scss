@@ -1,12 +1,8 @@
-#wrap {
-  // padding-left: 0;
+#wrap.toggled {
   -webkit-transition: all .5s ease;
      -moz-transition: all .5s ease;
        -o-transition: all .5s ease;
           transition: all .5s ease;
-}
-#wrap.toggled {
-  padding-left: $sidebar-width;
 }
 #sidebar-wrapper {
   left: $sidebar-width;

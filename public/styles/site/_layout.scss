@@ -1,14 +1,19 @@
 body {
-  position: relative;
   color: $gray-dark;
 }
 #wrap {
+  position: relative;
   z-index: 1;
+  width: auto;
   height: auto !important;
   min-height: 100vh;
   padding-top: $header-height;
   padding-bottom: $footer-height;
   margin-bottom: -$footer-height;
+  -webkit-transition: all .5s ease;
+     -moz-transition: all .5s ease;
+       -o-transition: all .5s ease;
+          transition: all .5s ease;
 }
 #push {
   position: static;
@@ -19,17 +24,23 @@ body {
 }
 #resource-wrapper {
   position: relative;
-  left: $sidebar-width-collapse;
   width: auto;
   height: 100vh;
   padding: 40px;
+  padding-left: $sidebar-width-collapse + 40px;
   margin-top: -$header-height;
-  margin-right: $sidebar-width-collapse;
   overflow-y: scroll;
+  -webkit-transition: all .5s ease;
+     -moz-transition: all .5s ease;
+       -o-transition: all .5s ease;
+          transition: all .5s ease;
 }
 #wrap.toggled #resource-wrapper {
-  left: 0;
-  margin-right: 0;
+  padding-left: $sidebar-width + 40px;
+  -webkit-transition: all .5s ease;
+     -moz-transition: all .5s ease;
+       -o-transition: all .5s ease;
+          transition: all .5s ease;
 }
 #footer {
   padding-top: 30px;

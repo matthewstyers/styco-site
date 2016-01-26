@@ -39,7 +39,8 @@ keystone.set('nav', {
 	'posts': ['posts', 'topics'],
 	'media': 'media',
 	'enquiries': 'enquiries',
-	'users': ['users'/*, 'profiles'*/]
+	'users': ['users'/*, 'profiles'*/],
+	'profile': ['profiles', 'tools']
 });
 
 //cloudinary config

@@ -24,14 +24,13 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		var q = keystone.list('UserProfile').model.findOne({
 			username: locals.filters.user
-		}).populate('user');
+		}).populate('user tools')
+		.sort('category');
 		q.exec(function(err, result) {
 			locals.data.profile = result;
 			next(err);
 		});
-
 	});
-
 	// Render the view
 	view.render(viewUri);
 

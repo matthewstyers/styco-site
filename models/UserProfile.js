@@ -4,11 +4,11 @@ var Types = keystone.Field.Types;
 
 var UserProfile = new keystone.List('UserProfile', {
   autokey: {
-    from: 'user',
+    from: 'username',
     path: 'key',
     unique: true
   },
-  defaultColumns: 'belongsTo, twitter, github',
+  defaultColumns: 'name, belongsTo, twitter, github',
   hidden: false,
   label: 'User Profiles',
   nocreate: false,
@@ -17,6 +17,9 @@ var UserProfile = new keystone.List('UserProfile', {
   path: 'profiles',
   plural: 'user profiles',
   singular: 'user profile',
+  map: {
+    name: 'username'
+  }
 });
 
 UserProfile.add({
@@ -31,8 +34,11 @@ UserProfile.add({
     initial: true
   },
   username: {
-    type:Types.Text,
-    unique: true
+    type: Types.Text,
+    unique: true,
+    required: true,
+    initial: true,
+    index: true
   }
 }, 'Contact', {
   phone: {
@@ -40,11 +46,13 @@ UserProfile.add({
     unique: true
   }
 }, 'Skills', {
-  experience: {
-    type: Types.TextArray
-  },
-  toolbelt: {
-    type: Types.TextArray
+  tools: {
+    type: Types.Relationship,
+    ref: 'Tool',
+    many: true,
+    filters: {
+      user: ':_id'
+    }
   }
 }, 'Handles', {
   twitter: {
