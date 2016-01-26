@@ -40,7 +40,8 @@ Tool.add({
       label: 'Miscellaneous'
     }],
 		default: 'backend',
-		index: 'true'
+		index: true,
+		initial: true
 },
 	description: {
 		type: Types.Text,

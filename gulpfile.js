@@ -1,3 +1,4 @@
+var async = require('async');
 var gulp = require('gulp');
 var install = require('gulp-install');
 var jshint = require('gulp-jshint');
@@ -18,9 +19,10 @@ legacyWatch is enabled within nodemon, can block the event loop.
 */
 var paths = {
   'package': './package.json',
-  'src': ['./models/**/*', './routes/**/*.js', 'app.js'],
+  'src': ['./models/**/*.js', './routes/**/*.js', './app.js'],
   'static': ['./templates/**/*.jade', './client/js', './public/images/**/*',
-    './public/fonts/**/*', './public/js/**/*'],
+    './public/fonts/**/*', './public/js/**/*'
+  ],
   'style': {
     sass: './public/styles/**/*.scss',
     compiled: './public/dist/site.min.css',
@@ -49,10 +51,12 @@ var subProcess = {
 /* TODO: figure out some way to set the loglevel. It's super chatty.*/
 gulp.task('install', function() {
   gulp.src(paths.package)
-  // NOTE: currently points to a node_modules dir in the parent.
-  // a 'typical' confiruation would would use './'
-  .pipe(gulp.dest('../'))
-  .pipe(install({ignoreScripts: true}));
+    // NOTE: currently points to a node_modules dir in the parent.
+    // a 'typical' confiruation would would use './'
+    .pipe(gulp.dest('../'))
+    .pipe(install({
+      ignoreScripts: true
+    }));
 });
 /*
 NOTE: the install task is async on purpose. If it's run synchronously, it slows
@@ -68,8 +72,8 @@ is watching.
 // reads the the source javascript and return a report of any errors.
 gulp.task('lint', function() {
   gulp.src(paths.src)
-  .pipe(jshint())
-  .pipe(jshint.reporter(jshintReporter));
+    .pipe(jshint())
+    .pipe(jshint.reporter(jshintReporter));
 });
 
 // sass compilation process
@@ -85,8 +89,10 @@ gulp.task('sass', function(cb) {
     // uncomment the next line if you'd like a human-readable version.
     // .pipe(gulp.dest(paths.style.dist))
 
-    // add the standard '.min' suffix to file name, denoting minified css.
-    .pipe(rename({suffix: '.min'}))
+  // add the standard '.min' suffix to file name, denoting minified css.
+  .pipe(rename({
+      suffix: '.min'
+    }))
     // crunch it up
     .pipe(minifyCss({
       compatibility: 'ie9'
@@ -117,40 +123,43 @@ messages.
 to solve this problem, we simply set legacyWatch to true, thereby instructing
 nodemon to poll necessary files and identify changes.
 */
-gulp.task('nodemon', ['install', 'lint', 'sass'], function() {
+gulp.task('nodemon', ['install', 'lint'], function() {
   // start the livereload server.
   livereload.listen();
   nodemon({
-    script: './app.js',
-    watch: paths.src,
-    legacyWatch: true,
-    ext: 'js',
-    tasks: function(changedFiles) {
-      var tasks = [];
-      console.log('file changed');
-      changedFiles.forEach(function(file) {
-        // conditional tasks - useful if watching multiple file types.
-        if (path.extname(file) === '.js') {
-          tasks.push('lint');
-        }
-      });
-      return tasks;
-    }
-  })
-  // start the child watch processes. also runs on restart.
-  .on('start', function() {
-    subProcess.watch();
-  })
-  // On start/restart, watit til stdout and stdin streams are ready,
-  // test to see if  livereload is listening, and then fire a page reload.
-  .on('readable', function() {
-    this.stdout.on('data', function(chunk) {
-      if (/^listening/.test(chunk)) {
-        livereload.reload();
+      script: './app.js',
+      watch: paths.src,
+      legacyWatch: true,
+      ext: 'js',
+      tasks: function(changedFiles) {
+        var tasks = [];
+        console.log('file changed');
+        async.each(changedFiles, function(file, callback) {
+          if (path.extname(file) === '.js') {
+            tasks.push('lint');
+          }
+          callback();
+        }, function(err) {
+          if (err) console.log(err);
+          console.log(tasks);
+          return tasks;
+        });
       }
-      process.stdout.write(chunk);
+    })
+    // start the child watch processes. also runs on restart.
+    .on('start', function() {
+      subProcess.watch();
+    })
+    // On start/restart, watit til stdout and stdin streams are ready,
+    // test to see if  livereload is listening, and then fire a page reload.
+    .on('readable', function() {
+      this.stdout.on('data', function(chunk) {
+        if (/^listening/.test(chunk)) {
+          livereload.reload();
+        }
+        process.stdout.write(chunk);
+      });
     });
-  });
 });
 
 // default task (also the command Docker passes when the container starts,
