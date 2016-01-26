@@ -19,7 +19,7 @@ legacyWatch is enabled within nodemon, can block the event loop.
 */
 var paths = {
   'package': './package.json',
-  'src': ['./models/**/*.js', './routes/**/*.js', './app.js'],
+  'src': ['models/**/*.js', 'routes/**/*.js', 'app.js'],
   'static': ['./templates/**/*.jade', './client/js', './public/images/**/*',
     './public/fonts/**/*', './public/js/**/*'
   ],
@@ -71,9 +71,10 @@ is watching.
 
 // reads the the source javascript and return a report of any errors.
 gulp.task('lint', function() {
-  gulp.src(paths.src)
+  var stream = gulp.src(paths.src)
     .pipe(jshint())
     .pipe(jshint.reporter(jshintReporter));
+  return stream;
 });
 
 // sass compilation process
@@ -107,8 +108,9 @@ gulp.task('sass', function(cb) {
 });
 
 // simple page refresh
-gulp.task('reload', function() {
-  return livereload.reload();
+gulp.task('reload', function(cb) {
+  livereload.reload();
+  cb();
 });
 
 // core task. monitors/restarts app automatically, and handles crashes without
