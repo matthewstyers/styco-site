@@ -1,4 +1,3 @@
-var async = require('async');
 var gulp = require('gulp');
 var install = require('gulp-install');
 var jshint = require('gulp-jshint');
