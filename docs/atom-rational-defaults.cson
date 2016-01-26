@@ -1,0 +1,119 @@
+"*":
+  "atom-beautify":
+    _analyticsUserId: "128b479c-3546-44be-b0ea-964f4a35bf6a"
+    css_indent_comments: false
+    js_brace_style: "end-expand"
+    js_break_chained_methods: true
+    js_end_with_newline: true
+    js_eval_code: true
+    js_keep_function_indentation: true
+    js_wrap_line_length: 80
+    language_css_default_beautifier: "Pretty Diff"
+    language_css_disabled: true
+    language_html_default_beautifier: "Pretty Diff"
+    language_json_beautify_on_save: true
+    language_jsx_beautify_on_save: true
+    language_less_beautify_on_save: true
+    language_sass_default_beautifier: "CSScomb"
+    language_scss_beautify_on_save: true
+    language_scss_default_beautifier: "CSScomb"
+  "atom-material-ui":
+    accentColor: "Blue"
+    compactTreeView: true
+    depth: true
+    fontSize: "Small"
+    panelContrast: true
+    rippleAccentColor: true
+    showTabIcons: "Show on all tabs"
+    slimScrollbar: true
+    tabSize: "Small"
+    useRobotoInUI: true
+  "autocomplete-plus": {}
+  autosave:
+    enabled: true
+  build:
+    stealFocus: false
+  core:
+    destroyEmptyPanes: false
+    disabledPackages: [
+      "language-javascript"
+      "tidy-markdown"
+    ]
+    ignoredNames: [
+      "node_modules"
+      ".git"
+      ".DS_Store"
+    ]
+    openEmptyEditorOnStart: false
+    projectHome: "/Users/matthewstyers/projects/calldrive/devbox/sedna/sedna-server"
+    themes: [
+      "nucleus-dark-ui"
+      "one-dark-syntax"
+    ]
+  editor:
+    backUpBeforeSaving: true
+    fontSize: 13
+    invisibles: {}
+    showIndentGuide: true
+  "exception-reporting":
+    userId: "4fe11ae2-6f16-c6d9-e5cd-02caae0524ea"
+  "find-and-replace":
+    openProjectFindResultsInRightPane: true
+  "fold-functions":
+    autofold: true
+  "git-plus":
+    gitPath: "/usr/bin/git"
+    includeStagedDiff: false
+  "jade-beautify":
+    FILL_TAB: false
+    OMIT_DIV: true
+  jshint:
+    supportLintingJsx: true
+  jslint:
+    validateOnChange: true
+  "language-babel": {}
+  linter:
+    errorPanelHeight: 88
+    gutterPosition: "Left"
+    lintOnFlyInterval: 100
+    statusIconScope: "File"
+  "linter-jshint": {}
+  "linter-jsxhint": {}
+  "merge-conflicts": {}
+  minimap:
+    absoluteMode: true
+    adjustMinimapWidthToSoftWrap: false
+    charHeight: 1
+    plugins:
+      linter: true
+    textOpacity: 0.25
+  "one-dark-ui": {}
+  preview:
+    _analyticsUserId: "61a5f578-0e68-481f-88eb-17a9fa2081fa"
+  react:
+    enabledForAllJavascriptFiles: true
+  "smart-tab-name": {}
+  "tidy-markdown":
+    ensureFirstHeaderIsH1: false
+  "tidy-tabs":
+    accessedThreshold: 10
+    minimumTabs: 6
+    modifiedThreshold: 5
+    runOnSave: true
+  "tree-view":
+    hideIgnoredNames: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
+".coffee.jsx.source":
+  editor:
+    autoIndentOnPaste: true
+".jade.source":
+  editor:
+    autoIndent: false
+    autoIndentOnPaste: false
+    showInvisibles: true
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    softWrapHangingIndent: 2
