@@ -129,32 +129,28 @@ gulp.task('nodemon', ['install', 'lint'], function() {
   // start the livereload server.
   livereload.listen();
   nodemon({
-      script: './app.js',
+      script: 'app.js',
       watch: paths.src,
       legacyWatch: true,
       ext: 'js',
       tasks: function(changedFiles) {
-        var tasks = [];
         console.log('file changed');
-        async.each(changedFiles, function(file, callback) {
+        var tasks = [];
+        changedFiles.forEach(function(file) {
           if (path.extname(file) === '.js') {
             tasks.push('lint');
           }
-          callback();
-        }, function(err) {
-          if (err) console.log(err);
-          console.log(tasks);
-          return tasks;
         });
+        return tasks;
       }
     })
-    // start the child watch processes. also runs on restart.
     .on('start', function() {
+      // start the child watch processes. also runs on restart.
       subProcess.watch();
     })
-    // On start/restart, watit til stdout and stdin streams are ready,
-    // test to see if  livereload is listening, and then fire a page reload.
     .on('readable', function() {
+      // On start/restart, watit til stdout and stdin streams are ready,
+      // test to see if  livereload is listening, and then fire a page reload.
       this.stdout.on('data', function(chunk) {
         if (/^listening/.test(chunk)) {
           livereload.reload();
