@@ -1,0 +1,31 @@
+#toolbelt {
+  .tab-content {
+    padding: 1.2rem 0;
+  }
+  h4.card-title {
+    margin: 0;
+  }
+  td {
+    border: none;
+  }
+  #toolbelt-complete {
+    .nav-pills {
+      width: auto;
+      min-width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .nav-pills .nav-item {
+      display: inline-block;
+      float: none;
+    }
+    .nav-pills .nav-link {
+      color: $brand-warning;
+    }
+    .nav-pills .nav-link.active.active {
+      background-color: transparentize($brand-success, 1);
+      border: 1px solid;
+      border-color: $brand-warning;
+    }
+  }
+}

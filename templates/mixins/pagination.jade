@@ -1,0 +1,24 @@
+mixin pagination(data)
+  nav
+    ul.pagination
+      li.page-item.disabled
+        a.page-link(href='#', aria-label='Previous')
+          span(aria-hidden='true') «
+          span.sr-only Previous
+      each page in data
+        li.page-item.active
+          a.page-link(href='#')
+            | 1 
+            span.sr-only (current)
+        li.page-item
+          a.page-link(href='#') 2
+        li.page-item
+          a.page-link(href='#') 3
+        li.page-item
+          a.page-link(href='#') 4
+        li.page-item
+          a.page-link(href='#') 5
+        li.page-item
+          a.page-link(href='#', aria-label='Next')
+            span(aria-hidden='true') »
+            span.sr-only Next

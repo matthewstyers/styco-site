@@ -6,9 +6,9 @@ block content
       //- HEADING
       #overview
         .row#heading
-          .col-lg-3
+          .col-lg-3.col-sm-12
             img.img-fluid(src='/images/matthew-styers.jpg')
-          .col-lg-9
+          .col-lg-9.col-sm-12
             h1.display-2
               = data.profile.user.name.first
               | 
@@ -18,7 +18,7 @@ block content
           .row: .col-lg-12
             h1.display-4 Summary
           .row
-            .col-lg-6.col-sm-12
+            .col-lg-6.col-md-12
               ul
                 li 3+ years software development experience
                 li A/B and Multivariate testing experience
@@ -30,56 +30,109 @@ block content
                 li Implementation experience in a variety of languages and environments
       #toolbelt
         .row: .col-lg-12
-          h1.display-3 Toolbelt
+          h1.display-4 Toolbelt
         .row: .col-lg-12
-          ul.nav.nav-pills
-            li.nav-item: a.nav-link.active(href='#toolbelt-summary' data-toggle='pill') List
-            li.nav-item: a.nav-link(href='#toolbelt-detail' data-toggle='pill') Detail
+          ul.nav.nav-tabs
+            li.nav-item: a.nav-link.active(href='#toolbelt-favorites' data-toggle='tab') A Few Favorties
+            li.nav-item: a.nav-link(href='#toolbelt-complete' data-toggle='tab') The Detailed List
         .tab-content
-          #toolbelt-summary.tab-pane.fade.in.active(role='tabpanel')
+          #toolbelt-favorites.tab-pane.fade.in.active(role='tabpanel')
+            .row.text-xs-center
+              .col-lg-3.col-md-6.col-sm-12.col-xs-12
+                .card
+                  .card-header
+                    h4.card-title Backend
+                  .list-group.list-group-flush
+                    each tool in data.profile.tools
+                      if (tool.category === 'backend' && tool.isFavorite)
+                        li.list-group-item #[a(href=tool.url target='_blank') #{tool.name}]
+              .col-lg-3.col-md-6.col-sm-12.col-xs-12
+                .card
+                  .card-header
+                    h4.card-title Frontend
+                  .list-group.list-group-flush
+                    each tool in data.profile.tools
+                      if (tool.category === 'frontend' && tool.isFavorite)
+                        li.list-group-item #[a(href=tool.url target='_blank') #{tool.name}]
+              .col-lg-3.col-md-6.col-sm-12.col-xs-12
+                .card
+                  .card-header
+                    h4.card-title Infrastructure
+                  .list-group.list-group-flush
+                    each tool in data.profile.tools
+                      if (tool.category === 'infrastructure' && tool.isFavorite)
+                        li.list-group-item #[a(href=tool.url target='_blank') #{tool.name}]
+              .col-lg-3.col-md-6.col-sm-12.col-xs-12
+                .card
+                  .card-header
+                    h4.card-title Everything Else
+                  .list-group.list-group-flush
+                    each tool in data.profile.tools
+                      if (tool.category === 'miscellaneous' && tool.isFavorite)
+                        li.list-group-item #[a(href=tool.url target='_blank') #{tool.name}]
+          #toolbelt-complete.tab-pane.fade(role='tabpanel')
             .row: .col-lg-12
-              h1 Frontend
-              .row
-                each tool in data.profile.tools
-                  if (tool.category === 'frontend')
-                    .col-lg-3.col-md-4.col-sm-6.col-xs-12
-                      li #[a(href=tool.url target='_blank') #{tool.name}]
-              h1 Backend
-              .row
-                each tool in data.profile.tools
-                  if (tool.category === 'backend')
-                    .col-lg-3.col-md-4.col-sm-6.col-xs-12
-                      li #[a(href=tool.url target='_blank') #{tool.name}]
-              h1 Infrastructure
-              .row
-                each tool in data.profile.tools
-                  if (tool.category === 'infrastructure')
-                    .col-lg-3.col-md-4.col-sm-6.col-xs-12
-                      li #[a(href=tool.url target='_blank') #{tool.name}]
-              h1 Everything Else
-              .row
-                each tool in data.profile.tools
-                  if (tool.category === 'miscellaneous')
-                    .col-lg-4.col-sm-6.col-xs-12
-                      li #[a(href=tool.url target='_blank') #{tool.name}]
-          #toolbelt-detail.tab-pane.fade(role='tabpanel')
-            .row: .col-lg-12
-              table.table.table-striped
-                thead
-                  tr
-                    td Tool
-                    td Description
-                    td Type
-                tbody
-                  each tool in data.profile.tools
-                    tr
-                      td #[a(href=tool.url target='_blank') #{tool.name}]
-                      td= tool.description
-                      td= tool.category
+              ul.nav.nav-pills
+                li.nav-item: a.nav-link.active(href='#backendComplete' data-toggle='pill') Backend
+                li.nav-item: a.nav-link(href='#frontendComplete' data-toggle='pill') Frontend
+                li.nav-item: a.nav-link(href='#infrastructureComplete' data-toggle='pill') Infrastructure
+                li.nav-item: a.nav-link(href='#miscellaneousComplete' data-toggle='pill') Everything Else
+            .row
+              .col-lg-12
+                .tab-content
+                  #backendComplete.tab-pane.fade.in.active(role='tabpanel')
+                    .table-responsive
+                      table.table.table-striped.table-hover
+                        thead
+                          tr
+                            td Tool
+                            td Description
+                        tbody
+                          each tool in data.profile.tools
+                            if (tool.category === 'backend')
+                              tr
+                                td #[a(href=tool.url target='_blank') #{tool.name}]
+                                td= tool.description
+                  #frontendComplete.tab-pane.fade(role='tabpanel')
+                    table.table.table-striped.table-hover
+                      thead
+                        tr
+                          td Tool
+                          td Description
+                      tbody
+                        each tool in data.profile.tools
+                          if (tool.category === 'frontend')
+                            tr
+                              td #[a(href=tool.url target='_blank') #{tool.name}]
+                              td= tool.description
+                  #infrastructureComplete.tab-pane.fade(role='tabpanel')
+                    table.table.table-striped.table-hover
+                      thead
+                        tr
+                          td Tool
+                          td Description
+                      tbody
+                        each tool in data.profile.tools
+                          if (tool.category === 'infrastructure')
+                            tr
+                              td #[a(href=tool.url target='_blank') #{tool.name}]
+                              td= tool.description
+                  #miscellaneousComplete.tab-pane.fade(role='tabpanel')
+                    table.table.table-striped.table-hover
+                      thead
+                        tr
+                          td Tool
+                          td Description
+                      tbody
+                        each tool in data.profile.tools
+                          if (tool.category === 'miscellaneous')
+                            tr
+                              td #[a(href=tool.url target='_blank') #{tool.name}]
+                              td= tool.description
         //- EXPERIENCE
       #experience
         .row: .col-lg-12
-          h1.display-3 Experience
+          h1.display-4 Experience
         .row: .col-lg-12
           .conatiner-fluid
             ul.timeline
@@ -191,7 +244,7 @@ block content
                           li Earned top sales honors multiple times, including first month, and was consistently a top performer at the label
       #education
         .row: .col-lg-12
-          h1.display-3 Education
+          h1.display-4 Education
         .row
           .col-lg-12
             h3 Southern Nazarene University
@@ -201,7 +254,7 @@ block content
               li Conducted research on nonviolent social movements 
               li Completed semesters of remote study in Crested Butte, CO San Diego, CA 
               li Served on the Student Government Association Executive Council as VP of Campus Communications 
-              li Wrote 2 columns (Culture, political opinion) for the campus newspaper
+              li Wrote 2 columns (Culture, Political Opinion) for the campus newspaper
         .row
           .col-lg-12
             h3 Personal Achievements
@@ -209,12 +262,4 @@ block content
               li Served as adjust professor of Sociology at SNU semester following graduation.
               li Conducted outcomes measurement study for a local non-profit.
               li Completed 3 marathons and 4 half-marathons
-
-
-      #frontend(style='height:2000px')
-        h1.display-1.text-xs-center Frontend
-      #backend(style='height:2000px')
-        h1.display-1.text-xs-center backend
-      #devops(style='height:2000px')
-        h1.display-1.text-xs-center DevOps
 block js

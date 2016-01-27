@@ -1,3 +1,4 @@
+var async = require('async');
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
@@ -70,6 +71,7 @@ UserProfile.add({
 
 UserProfile.schema.pre('save', function (next) {
   var self = this;
+  console.log(self);
   keystone.list('User').model
   .findById(this.user)
   .exec(function (err, user) {
@@ -78,6 +80,25 @@ UserProfile.schema.pre('save', function (next) {
     next();
   });
 });
+
+// temp function to auto-add tools to toolbelt
+UserProfile.schema.pre('save', function(next) {
+  var self = this;
+  var allTools = [];
+  keystone.list('Tool')
+    .model.find()
+    .exec(function(err, results) {
+      async.each(results, function(result, callback) {
+        allTools.push(result._id);
+        callback();
+      }, function(err) {
+        if (err) console.log(err);
+        self.tools = allTools;
+        next();
+      });
+    });
+});
+
 UserProfile.schema.virtual('cvUri')
   .get(function() {
     var resources = 'resources';

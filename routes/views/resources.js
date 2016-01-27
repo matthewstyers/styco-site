@@ -1,3 +1,5 @@
+var async = require('async');
+var _ = require('lodash');
 var keystone = require('keystone');
 
 exports = module.exports = function(req, res) {
@@ -5,7 +7,7 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 
-	// Set locals
+	// Set local
 	locals.sidebar = true;
 	locals.noNav = true;
 	locals.filters = {
@@ -14,7 +16,8 @@ exports = module.exports = function(req, res) {
 	};
 	locals.data = {
 		posts: [],
-		profile: {}
+		profile: {},
+		tools: []
 	};
 
 	// set the view to be rendered
@@ -22,13 +25,41 @@ exports = module.exports = function(req, res) {
 	var viewUri = viewDir.concat('/', locals.filters.resource);
 	// Load the current post
 	view.on('init', function(next) {
-		var q = keystone.list('UserProfile').model.findOne({
+		var UserProfile = keystone.list('UserProfile');
+		var q = UserProfile.model.findOne({
 			username: locals.filters.user
-		}).populate('user tools')
-		.sort('category');
+		}).populate('user tools');
 		q.exec(function(err, result) {
-			locals.data.profile = result;
-			next(err);
+			async.waterfall(
+				[
+					function(cb) {
+						var sortedTools = _.sortByAll(result.tools, ['category', 'name']);
+						cb(null, sortedTools);
+					},
+					function(sortedTools, cb) {
+						// console.log(sortedTools);
+						_.assign(result.tools, sortedTools);
+						cb(null, result);
+					// },
+					// function(results, cb) {
+					//
+					// },
+					// function(results, cb) {
+					// 	var pages = _.chunk(results.tools, 10);
+					// 	cb(null, pages);
+					// },
+					// function(pages, cb) {
+					// 	locals.data.tools = pages;
+					// 	cb(null, null);
+					}
+				],
+				function(err, results) {
+					if (err) console.log(err);
+					// console.log(results);
+					locals.data.profile = results;
+					next(err);
+				}
+			);
 		});
 	});
 	// Render the view

@@ -18,7 +18,7 @@ legacyWatch is enabled within nodemon, can block the event loop.
 */
 var paths = {
   'package': './package.json',
-  'src': ['models/**/*.js', 'routes/**/*.js', 'app.js'],
+  'src': ['models/**/*.js', 'routes/**/*.js', 'app.js', 'package.json'],
   'static': ['./templates/**/*.jade', './client/js', './public/images/**/*',
     './public/fonts/**/*', './public/js/**/*'
   ],
@@ -41,7 +41,6 @@ var subProcess = {
     // watch static file dirs (templates, images, etc.) and do a simple page
     //reload on change
     gulp.watch(paths.static, ['reload']);
-    gulp.watch(paths.package, ['install']);
   }
 };
 
@@ -131,13 +130,16 @@ gulp.task('nodemon', ['install', 'lint'], function() {
       script: 'app.js',
       watch: paths.src,
       legacyWatch: true,
-      ext: 'js',
+      ext: 'js json',
       tasks: function(changedFiles) {
         console.log('file changed');
         var tasks = [];
         changedFiles.forEach(function(file) {
           if (path.extname(file) === '.js') {
             tasks.push('lint');
+          }
+          if (path.extname(file) === '.json') {
+            tasks.push('install');
           }
         });
         return tasks;

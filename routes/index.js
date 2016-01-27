@@ -3,10 +3,15 @@ var browserify = require('browserify-middleware');
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
-
+var rest = require('restful-keystone');
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
+
+var rest = require('restful-keystone')(
+	keystone, {
+		root: '/api/v0'
+	});
 
 // Import Route Controllers
 var routes = {
@@ -33,5 +38,8 @@ exports = module.exports = function(app) {
 	app.get('/resources/:user/:id', routes.views.resources);
 	app.all('/stuff', routes.views.stuff);
 	app.get('/topic/:category', routes.views.topic);
-
+	//start the api engine
+	rest.expose({
+		Post: true,
+	}).start();
 };
