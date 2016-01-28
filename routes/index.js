@@ -34,10 +34,14 @@ exports = module.exports = function(app) {
 	app.get('/', routes.views.index);
 	app.get('/about', routes.views.about);
 	app.all('/contact', routes.views.contact);
+	app.get('/exports/:user/:id', routes.views.exports);
 	app.get('/post/:slug', routes.views.post);
-	app.get('/resources/:user/:id', routes.views.resources);
+	app.all('/resources/:user/:id', routes.views.resources);
 	app.all('/stuff', routes.views.stuff);
 	app.get('/topic/:category', routes.views.topic);
+	app.all('/:user/:resource', routes.views.profile);
+	app.all('/:user', routes.views.profile);
+
 	//start the api engine
 	rest.expose({
 		Post: true,

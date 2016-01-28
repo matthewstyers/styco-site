@@ -29,3 +29,88 @@
     }
   }
 }
+
+#export-wrapper {
+  #past, #profile {
+    padding: 20px 40px;
+  }
+  #profile {
+    color: white;
+    background-color: $brand-primary;
+  }
+  .timeline-badge {
+    display: none;
+  }
+  .timeline {
+    padding: 0;
+  }
+  .timeline:before,
+  .timeline:after,
+  .timeline-panel:before,
+  .timeline-panel:after {
+    display: none;
+  }
+  .timeline-panel {
+    width: auto;
+    min-width: 100%;
+    border-radius: $border-radius;
+  }
+  .timeline-body p,
+  .timeline-body li {
+    font-size: 1rem;
+  }
+  .timeline-body .lead {
+    display: none;
+  }
+  .display-2 {
+    font-size: 3rem;
+  }
+  .display-4 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  .timeline-title {
+    h4 {
+      font-size: 1.5rem;
+    }
+    h5 {
+      font-size: 1.25rem;
+    }
+  }
+  ul {
+    padding-left: 1rem;
+    margin: 0;
+  }
+  li {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 1rem;
+    // line-height: 1.7;
+  }
+  .card-header {
+    background-color: white;
+    h1.display-4 {
+      margin-bottom: 0;
+    }
+  }
+  #summary {
+    padding: 1rem 0;
+  }
+  .icon-left {
+    padding-right: .75rem;
+  }
+  #contact p {
+    margin: .25rem;
+    font-size: .85rem;
+    font-weight: 200;
+  }
+  #site-plug {
+    padding: 1rem 0;
+    p {
+      margin: 0;
+    }
+  }
+}

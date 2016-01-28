@@ -31,7 +31,7 @@ $(document)
         hamburgerCross();
         $('#wrap').toggleClass('toggled');
       },
-      5000
+      2000
     );
 
   });

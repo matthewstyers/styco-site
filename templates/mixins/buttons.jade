@@ -10,3 +10,9 @@ mixin submit(options)
       if options.icon
         span.i(class!= 'fa fa-' + options.icon, style='margin-right: 6px')
       != options.text
+
+mixin btn(options)
+  button.btn(type='submit', class!='btn-' + options.type, id=options.id)
+    if options.icon
+      span.i(class!= 'fa fa-' + options.icon, style='margin-right: 6px')
+    != options.text

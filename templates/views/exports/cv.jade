@@ -1,0 +1,173 @@
+extend ../../layouts/export
+
+block content
+  #export-wrapper.cv
+    .row
+      .col-lg-4#profile
+        .row
+          .col-lg-12
+            img.img-fluid(src='/images/matthew-styers.jpg' style='max-width:75%').center-block
+          .col-lg-12.text-xs-center
+            h1
+              = data.profile.user.name.first
+              | 
+              = data.profile.user.name.last
+            h4 Node.JS + Javascript Developer
+        #contact
+          .row
+            .col-lg-6
+              p #[i.fa.fa-globe.icon-left] Houston, TX
+              p #[i.fa.fa-phone.icon-left] #{data.profile.phone}
+            .col-lg-6
+              p #[i.fa.fa-envelope-o.icon-left] #{data.profile.user.email}
+              p #[i.fa.fa-desktop.icon-left] styers.co
+        #site-plug
+          .row
+            .col-lg-12
+              p Online résumé available at styers.co/matthew
+        #summary
+          .row
+            .col-lg-12
+              h1.display-4 Summary
+          .row
+            .col-lg-12
+              ul
+                li 3+ years software development experience
+                li Capable full-stack engineer with an eye for UI design
+                li Implementation experience in a variety of languages and environments
+                li A/B and Multivariate testing experience
+                li Well-versed in front-end, back-end, and infrastructure engineering
+                li Prior experience in sales, marketing, and team management
+        #toolbelt
+          .row: .col-lg-12
+            h1.display-4 Toolbelt
+            h4 Back-end
+            p
+              each tool in data.profile.tools
+                if (tool.category ==='backend')
+                   | #[span #{tool.name}, ]
+            h4 Front-end
+            p
+              each tool in data.profile.tools
+                if (tool.category ==='frontend')
+                  | #[span #{tool.name}, ]
+            h4 Infrastructure
+            p
+              each tool in data.profile.tools
+                if (tool.category ==='infrastructure')
+                  | #[span #{tool.name},  ]
+            h4 Everything Else
+            p
+              each tool in data.profile.tools
+                if (tool.category ==='miscellaneous')
+                  | #[span #{tool.name}, ]
+            
+      .col-lg-8#past
+        #experience
+          .row: .col-lg-12
+            h1.display-4 Experience
+          .row: .col-lg-12
+            .conatiner-fluid
+              ul.timeline
+                li.timeline-inverted#CALLDRIVE
+                  .row
+                    .col-lg-12
+                      .timeline-panel
+                        .timeline-heading
+                          h4.timeline-title
+                            | CallDrive | #[span.h5 Houston, TX] #[span.h6.pull-xs-right July 2015 - Jan 2016]
+                          p: small.text-muted
+                            |  Co-founder, Product Engineer
+                        .timeline-body
+                          p
+                            .lead Co-founded and led product development for an enterprise
+                              | software startup designed to connect online consumers with 
+                              | with businesses that primarily conduct transactions offline.
+                          ul
+                            li Worked as a primary member of a small engineering team to build an enterprise software prodcut designed to automate online advertising, in addition to leading product and marketing strategy.
+                            li Developed multiple iterations of the platform on Python-Django-Postgres-Backbone and NodeJS-Keystone-React-MongoDB stacks.
+                            li Integrated and constructed UIs around a variety of third-party services, including Twilio (telephony) and Google Adwords (Advertising), amongst many others.
+                            li Designed front-end webapps using Jade, ReactJS, and Backbone-Marionette.
+                            li Assisted with construction and deployment of microservice architectures using Docker, Amazon Web Services and Heroku.
+                li.timeline-inverted#FIRSTFUNNEL
+                  .row
+                    .col-lg-12
+                      .timeline-panel
+                        .timeline-heading
+                          h4.timeline-title
+                            | FirstFunnel | #[span.h5 Houston, TX] #[span.h6.pull-xs-right January 2015 - July 2015]
+                          p: small.text-muted
+                            |  Co-Founder, Product Manager
+                        .timeline-body
+                          p
+                            .lead Partnered with the ownership group at M&N Holdings to create a software
+                              | product from the platform created there before eventually branching off to
+                              | to create a more broadly appealing product, which would ultimately become CallDrive.
+                          ul
+                            li Served as Product Manager for First Funnel, a marketing automation platform for automotive dealerships
+                            li Successfully led a team of designers and engineers through planning, design, and and initial development phases of product creation
+                            li Managed remote team of international developers during prototype creation sprint.
+                            li Developed business and financial models used to secure seed funding.
+                li.timeline-inverted#MN-HOLDINGS
+                  .row
+                    .col-lg-12
+                      .timeline-panel
+                        .timeline-heading
+                          h4.timeline-title
+                            | M&N Holding Co. (Auto Group) | #[span.h5 Oklahoma City, OK] #[span.h6.pull-xs-right June 2012 - Jan 2015]
+                          p: small.text-muted
+                            |  Project Manager
+                        .timeline-body
+                          p
+                            .lead Though initially hired to manage dealership social media accounts and SEO,
+                              | I quickly became an essential piece of the larger digital team by 
+                              | generating positive outcomes on a variety of corporate interests, including
+                              | the development of an in-house website and marketing platform
+                          ul
+                            li Managed digital marketing operations for a multipoint automotive group
+                            li Served as primary marketing analyst, advancing corporate practices on sales attribution, ROI measurement, and risk analysis.
+                            li Led several projects across 15+ dealerships, including development of an in-house website platform
+                            li Played a central role in the diversification of digital marketing efforts
+                li.timeline-inverted#TATE
+                  .row
+                    .col-lg-12
+                      .timeline-panel
+                        .timeline-heading
+                          h4.timeline-title
+                            | Tate Music Group | #[span.h5 Oklahoma City, OK] #[span.h6.pull-xs-right November 2011 - June 2012]
+                          p: small.text-muted
+                            |  A&R/Sales Representative
+                        .timeline-body
+                          p
+                            .lead A life-long interest in music industry eventually led to 
+                              | led to a position in Worked in Artists & Repertoire division of 
+                              | Tate Music Group, an Oklahoma City-based record label.
+                          ul
+                            li Signed a variety of new talet from around the US to the label roster
+                            li Developed and maintained relationships with artists and management
+                            li Provided guidance to incoming artists about operating effectively within the music industry.
+                            li Earned top sales honors multiple times, including first month, and was consistently a top performer at the label
+        #education
+          .row 
+            .col-lg-6
+              .card
+                .card-header
+                  h1.display-4 Education
+                .card-block
+                  h4 Southern Nazarene University
+                  h5 BS, Sociology | #[span.text-muted May, 2011]
+                  ul
+                    li Graduated with 3.5 GPA
+                    li Conducted research on nonviolent social movements 
+                    li Completed semesters of remote study in Crested Butte, CO San Diego, CA 
+                    li Served on the Student Government Association Executive Council as VP of Campus Communications 
+                    li Wrote 2 columns (Culture, Political Opinion) for the campus newspaper
+            .col-lg-6
+              .card
+                .card-header
+                  h1.display-4 Personal Achievements
+                .card-block
+                  ul
+                    li Served as adjust professor of Sociology at SNU semester following graduation.
+                    li Conducted outcomes measurement study for a local non-profit.
+                    li Completed 3 full and 4 half-marathons
