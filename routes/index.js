@@ -3,7 +3,7 @@ var browserify = require('browserify-middleware');
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
-var rest = require('restful-keystone');
+// var rest = require('restful-keystone');
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);

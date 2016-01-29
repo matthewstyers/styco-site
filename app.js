@@ -52,7 +52,7 @@ keystone.set('email locals', {
 	}
 });
 keystone.set('mandrill api key', process.env.MANDRILL_API_KEY);
-keystone.set('mandrill username', process.env.MANDRILL_API_KEY || 'matthew@styers.co');
+keystone.set('mandrill username', process.env.MANDRILL_USERNAME || 'mattysty@gmail.com');
 
 // replacement rules for emails.
 keystone.set('email rules', [{
