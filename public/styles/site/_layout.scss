@@ -8,7 +8,7 @@ body {
   height: auto !important;
   min-height: 100vh;
   // padding-top: $header-height;
-  padding-bottom: $footer-height;
+  padding-bottom: $footer-height + 25px;
   margin-bottom: -$footer-height;
   -webkit-transition: all .5s ease;
      -moz-transition: all .5s ease;
@@ -46,6 +46,7 @@ body {
   padding-top: 30px;
   margin-top: 30px;
   color: #777;
+  background-color: white;
   border-top: 1px solid #eee;
 }
 .gallery-image img {
