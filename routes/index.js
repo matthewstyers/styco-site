@@ -22,13 +22,13 @@ var routes = {
 exports = module.exports = function(app) {
 	// in development, do an 'on-the-fly' build of client-side
 	// and make the scripts available at /js/_path_to_script_
-	if (process.env.NODE_ENV === 'development') {
+	// if (process.env.NODE_ENV === 'development') {
 		app.use('/js', browserify('./client/js', {
 			transform: [babelify.configure({
 				plugins: ['object-assign']
 			})]
 		}));
-	}
+	// }
 
 	// Views
 	app.get('/', routes.views.index);
