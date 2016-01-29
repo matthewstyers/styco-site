@@ -1,6 +1,6 @@
 {
-  "name": "site",
-  "version": "0.0.0",
+  "name": "Styers.co",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "async": "1.5.0",
@@ -8,9 +8,7 @@
     "browserify-middleware": "7.0.0",
     "babel-plugin-object-assign": "1.2.1",
     "dotenv": "1.1.0",
-    "html-pdf": "1.5.0",
     "jade": "1.11",
-    "jade-pdf-redline": "0.0.2",
     "keystone": "0.3.16",
     "lodash": "3.10.1",
     "node-sass": "3.4.2",

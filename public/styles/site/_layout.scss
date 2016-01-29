@@ -7,7 +7,7 @@ body {
   width: auto;
   height: auto !important;
   min-height: 100vh;
-  padding-top: $header-height;
+  // padding-top: $header-height;
   padding-bottom: $footer-height;
   margin-bottom: -$footer-height;
   -webkit-transition: all .5s ease;
@@ -28,7 +28,7 @@ body {
   height: 100vh;
   padding: 40px;
   padding-left: $sidebar-width-collapse + 40px;
-  margin-top: -$header-height;
+  // margin-top: -$header-height;
   overflow-y: scroll;
   -webkit-transition: all .5s ease;
      -moz-transition: all .5s ease;

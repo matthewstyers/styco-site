@@ -66,12 +66,21 @@ UserProfile.add({
 'Resources', {
   cv: {
     type: Types.Boolean,
+    label: 'show cv download link'
+  },
+  cvFile: {
+    type: Types.LocalFile,
+    dest: 'public/files',
+    prefix: '/files/',
+    filename: function(item, file){
+		return item.id + '.' + file.extension;
+	}
   }
 });
 
 UserProfile.schema.pre('save', function (next) {
   var self = this;
-  console.log(self);
+  // console.log(self);
   keystone.list('User').model
   .findById(this.user)
   .exec(function (err, user) {
@@ -104,15 +113,5 @@ UserProfile.schema.virtual('cvUri')
     var resources = 'resources';
     return resources.concat('/', this.username, '/cv');
   });
-
-// UserProfile.schema.virtual('posts')
-// .get(function() {
-//   keystone.list('Post').model.find()
-//   .where('author', this.user)
-//   .exec(function(err, posts) {
-//     if (err) throw new Error(err);
-//     return posts;
-//   });
-// });
 
 UserProfile.register();

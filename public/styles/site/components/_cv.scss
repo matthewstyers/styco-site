@@ -35,8 +35,8 @@
     padding: 20px 40px;
   }
   #profile {
-    color: white;
-    background-color: $brand-primary;
+    color: $gray-dark;
+    background-color: white;
   }
   .timeline-badge {
     display: none;
@@ -112,5 +112,11 @@
     p {
       margin: 0;
     }
+  }
+}
+#download-link {
+  padding: 1.5rem 0;
+  .btn {
+    margin-top: .5rem;
   }
 }

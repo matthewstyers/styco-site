@@ -15,8 +15,11 @@ block content
               = data.profile.user.name.last
             h2 Node.JS + Javascript Developer | #[span.h4.text-muted Houston, TX]
             if pdfLink
-              .btn-group
-                +btn({id: 'downloadPdf', text: 'Download PDF', type: 'primary-outline', icon: 'download'})
+              .btn-toolbar#download-link
+                - var cv = data.profile.cvFile;
+                +abtn({href: '/files/' + cv.filename, text: 'Download PDF', icon: 'download', type: 'primary-outline btn-sm'})
+                +abtn({href: '/', text: 'Back to Styers.co', icon: 'sign-out', type: 'info-outline btn-sm' })
+                +abtn({href: '/contact', text: 'Contact Matthew', icon: 'bullhorn', type: 'warning btn-sm' })
         #summary.row: .col-lg-12
           .row: .col-lg-12
             h1.display-4 Summary
@@ -266,4 +269,3 @@ block content
               li Conducted outcomes measurement study for a local non-profit.
               li Completed 3 marathons and 4 half-marathons
 block js
-  script(src='/js/components/downloadPdf.js')

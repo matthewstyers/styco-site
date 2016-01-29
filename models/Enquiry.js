@@ -46,6 +46,45 @@ Enquiry.add({
 	}
 });
 
+Enquiry.schema.pre('save', function(next) {
+	this.wasNew = this.isNew;
+	next();
+});
+
+Enquiry.schema.post('save', function() {
+	if (this.wasNew) {
+		this.sendNotificationEmail();
+	}
+});
+
+Enquiry.schema.methods.sendNotificationEmail = function(callback) {
+
+	if ('function' !== typeof callback) {
+		callback = function() {};
+	}
+
+	var enquiry = this;
+
+	keystone.list('User')
+		.model.find()
+		.where('isAdmin', true)
+		.exec(function(err, admins) {
+
+			if (err) return callback(err);
+
+			new keystone.Email('enquiry-notification')
+				.send({
+					to: admins,
+					from: {
+						name: 'Styers.co',
+						email: 'info@styers.co'
+					},
+					subject: 'New message on Styers.co',
+					enquiry: enquiry
+				}, callback);
+		});
+};
+
 Enquiry.defaultSort = '-createdAt';
 Enquiry.defaultColumns = 'name, email, enquiryType, createdAt';
 Enquiry.register();

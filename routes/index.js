@@ -8,10 +8,10 @@ var rest = require('restful-keystone');
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
-var rest = require('restful-keystone')(
-	keystone, {
-		root: '/api/v0'
-	});
+// var rest = require('restful-keystone')(
+// 	keystone, {
+// 		root: '/api/v0'
+// 	});
 
 // Import Route Controllers
 var routes = {
@@ -34,7 +34,6 @@ exports = module.exports = function(app) {
 	app.get('/', routes.views.index);
 	app.get('/about', routes.views.about);
 	app.all('/contact', routes.views.contact);
-	app.get('/exports/:user/:id', routes.views.exports);
 	app.get('/post/:slug', routes.views.post);
 	app.all('/resources/:user/:id', routes.views.resources);
 	app.all('/stuff', routes.views.stuff);
@@ -43,7 +42,7 @@ exports = module.exports = function(app) {
 	app.all('/:user', routes.views.profile);
 
 	//start the api engine
-	rest.expose({
-		Post: true,
-	}).start();
+	// rest.expose({
+	// 	Post: true,
+	// }).start();
 };

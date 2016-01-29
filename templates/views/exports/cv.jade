@@ -3,10 +3,10 @@ extend ../../layouts/export
 block content
   #export-wrapper.cv
     .row
-      .col-lg-4#profile
+      .col-xs-4#profile
         .row
           .col-lg-12
-            img.img-fluid(src='/images/matthew-styers.jpg' style='max-width:75%').center-block
+            img.img-fluid(src='/images/matthew-styers.jpg' style='width:60%').center-block
           .col-lg-12.text-xs-center
             h1
               = data.profile.user.name.first
@@ -21,10 +21,6 @@ block content
             .col-lg-6
               p #[i.fa.fa-envelope-o.icon-left] #{data.profile.user.email}
               p #[i.fa.fa-desktop.icon-left] styers.co
-        #site-plug
-          .row
-            .col-lg-12
-              p Online résumé available at styers.co/matthew
         #summary
           .row
             .col-lg-12
@@ -61,8 +57,12 @@ block content
               each tool in data.profile.tools
                 if (tool.category ==='miscellaneous')
                   | #[span #{tool.name}, ]
-            
-      .col-lg-8#past
+        #site-plug
+          .row
+            .col-lg-12.text-xs-center
+              p Résumé online at: 
+              h5 #[strong styers.co/matthew]
+      .col-xs-8#past
         #experience
           .row: .col-lg-12
             h1.display-4 Experience
