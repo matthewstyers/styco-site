@@ -51,4 +51,23 @@ block content
                 h2 Matthew's Recent Posts
                 +post-deck({posts: matthew.posts, columns: '2', limit: '6'})
         #taylor.tab-pane.fade(role="tabpanel")
-          h1.display-4 Taylor
+          h1.display-4 Taylor #[span.muted Styers]
+          .row: .col-lg-12
+          p I’m Taylor Styers.  I’m an undergraduate student at the University of Houston-Downtown and I study (arguably) the two subjects that high schoolers hate the most (math and chemistry).  I’m a pet mother of two unruly dogs and one wily cat.  I work at Sprinkles Cupcakes as a trainer, leading fellow associates in cupcake professionalism.
+          p When I’m not tending to my obligations, I enjoy finding gifs of my favorite television characters and funny animal videos on the Internet, pop culture, watching movies and eating popcorn, building my personal database of cool and interesting magazine articles and looking at well designed things.
+          .row: .col-lg-12
+            .section
+              .section-header
+                h2 Links
+              .btn-toolbar
+                if taylor.profile.cv
+                  +abtn({text: 'Résumé', icon: 'file-text-o', type: 'primary-outline', href: taylor.profile.cvUri})
+                if taylor.profile.github
+                  +abtn({text: 'Github', icon: 'github', type: 'warning-outline', href: ('https://github.com/' + taylor.profile.github)})
+                if taylor.profile.twitter
+                  +abtn({text: 'Twitter', icon: 'twitter', type: 'info-outline', href: ('https://twitter.com/' + taylor.profile.twitter)})
+            if (taylor.posts && taylor.posts.length)
+              .section
+                .section-header
+                  h2 Taylor's Recent Posts
+                  +post-deck({posts: taylor.posts, columns: '2', limit: '6'})
