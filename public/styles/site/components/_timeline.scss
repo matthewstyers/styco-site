@@ -14,6 +14,29 @@
   content: " ";
   background-color: #eee;
 }
+@include media-breakpoint-down(sm) {
+  .timeline:before,
+  .timeline-panel:before,
+  .timeline-panel:after {
+    display: none;
+  }
+  h1.display-2 {
+    font-size: 4rem;
+  }
+}
+@include media-breakpoint-down(xs) {
+  .timeline:before,
+  .timeline-panel:before,
+  .timeline-panel:after {
+    display: none;
+  }
+  h1.display-2 {
+    font-size: 3rem;
+  }
+  h1.display-4 {
+    font-size: 2.5rem;
+  }
+}
 
 .timeline > li {
   position: relative;
