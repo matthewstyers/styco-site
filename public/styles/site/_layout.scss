@@ -15,6 +15,9 @@ body {
        -o-transition: all .5s ease;
           transition: all .5s ease;
 }
+#wrap.nonav {
+  padding-bottom: 0;
+}
 #push {
   position: static;
   bottom: 0;

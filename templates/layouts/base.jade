@@ -36,12 +36,11 @@ html(lang="en")
           include ../components/nav
         block content
     else
-      #wrap.toggled
+      #wrap.toggled.nonav
         include ../components/sidebar
         block content
 
-
-      //- #push
+    //- #push
     unless noNav
       include ../components/footer
 
